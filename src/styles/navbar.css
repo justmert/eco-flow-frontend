@@ -1,0 +1,13 @@
+.navbar-item {
+  background: transparent;
+  /* background-color: #eee; */
+}
+
+.navbar-selected {
+  background-color: rgb(201 201 201 / 75%);
+  /* color: #000; */
+}
+
+.navbar-hover:hover {
+  background-color: rgb(201 201 201 / 45%);
+}
