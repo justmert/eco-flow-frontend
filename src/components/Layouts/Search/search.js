@@ -1,26 +1,8 @@
 import { InstantSearch, SearchBox, Hits } from "react-instantsearch-hooks-web";
 import algoliasearch from "algoliasearch/lite";
-// import {connectHighlight } from 'react-instantsearch-dom';
 import "instantsearch.css/themes/satellite.css";
 import "../../../styles/search.css";
-import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import { Link } from "react-router-dom";
-
-// const CustomHighlight = connectHighlight(({ highlight, attribute, hit }) => {
-//     const parsedHit = highlight({
-//       highlightProperty: '_highlightResult',
-//       attribute,
-//       hit
-//     });
-
-//     return (
-//       <div>
-//         {parsedHit.map(
-//           part => (part.isHighlighted ? <mark>{part.value}</mark> : part.value)
-//         )}
-//       </div>
-//     );
-//   });
 
 const Hit = ({ hit }) => (
   <Link
@@ -39,7 +21,6 @@ const Hit = ({ hit }) => (
         </h3>
         <p className="text-sm leading-none break-word max-h-[2em] overflow-hidden text-gray-500">
           {hit.info.description}
-          {/* <a href="#">k</a> */}
         </p>
       </div>
     </div>
@@ -79,7 +60,7 @@ export default function Search(props) {
 
   return (
     <InstantSearch
-      indexName= {process.env.REACT_APP_ALGOLIA_INDEX_NAME}
+      indexName={process.env.REACT_APP_ALGOLIA_INDEX_NAME}
       searchClient={searchClient}
     >
       <SearchBox
@@ -88,13 +69,6 @@ export default function Search(props) {
         showLoadingIndicator={true}
         searchAsYouType={true}
       />
-      {/* <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-        <MagnifyingGlassIcon
-          className="h-5 w-5 text-gray-400"
-          aria-hidden="true"
-        />
-      </div> */}
-
       <Hits
         hitComponent={Hit}
         classNames={{

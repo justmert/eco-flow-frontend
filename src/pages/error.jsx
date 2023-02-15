@@ -1,4 +1,3 @@
-import { useRouteError } from "react-router-dom";
 import "../styles/error.css";
 export default function ErrorPage() {
   return (
@@ -95,12 +94,12 @@ export default function ErrorPage() {
               strokeWidth={8}
             />
           </svg>
-        <div className="mt-12 text-gray-400">
+          <div className="mt-12 text-gray-400">
             <p className="text-6xl block">4 0 4</p>
-          <p className="text-gray-400 text-xl mt-4">
-            Sorry, We couldn't find what you are looking for!
-          </p>
-        </div>
+            <p className="text-gray-400 text-xl mt-4">
+              Sorry, We couldn't find what you are looking for!
+            </p>
+          </div>
         </center>
       </div>
       {/* </center>

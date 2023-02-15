@@ -60,7 +60,6 @@ export default function Repository(props) {
             setdata({ ...docSnap.data(), repository_info: info });
           }
         } else {
-          // doc.data() will be undefined in this case
           console.log("No such document!");
         }
       })
@@ -95,46 +94,34 @@ export default function Repository(props) {
 
       <div className="repository">
         <div className="container px-12 mx-auto">
-          <div className="mert-first">
-            <section className="py-3">
-              {/* <div className="container px-4 mx-auto"> */}
-              <div className="bg-gray-500 rounded-xl">
-                {/* <div cla≥ssName="p-6 bg-gray-500 rounded-xl chart-container"> */}
-                {/* <div className="w-auto mb-2"> */}
-                {/* <h3 className="text-lg mb-1 text-gray-400 font-bold font-medium">Commit History by Weeks</h3> */}
-                {/* </div> */}
-                <div>
-                  <RepositoryInfo data={data.repository_info} />
-                </div>
+          <section className="py-3">
+            <div className="bg-gray-500 rounded-xl">
+              <div>
+                <RepositoryInfo data={data.repository_info} />
               </div>
+            </div>
+          </section>
 
-              {/* </div> */}
-              {/* </div> */}
-            </section>
-          </div>
-
-          <div className="mert-first">
-            <section className="py-3">
-              <div className="container px-4 mx-auto">
-                <div className="p-6 bg-gray-500 rounded-xl chart-container flex flex-col">
-                  <div className="w-auto mb-2">
-                    <h3 className="text-lg mb-1 text-gray-400 font-bold font-medium">
-                      Commit History by Weeks
-                    </h3>
-                  </div>
-                  <div>
-                    <CommitHistory data={data.commit_history} />
-                  </div>
-                </div>
-              </div>
-            </section>
-          </div>
-          <div className="mert-second" />
           <section className="py-3">
             <div className="container px-4 mx-auto">
               <div className="p-6 bg-gray-500 rounded-xl chart-container flex flex-col">
                 <div className="w-auto mb-2">
-                  <h3 className="text-lg mb-1 text-gray-400 font-bold font-medium">
+                  <h3 className="text-lg mb-1 text-gray-400 font-medium">
+                    Commit History by Weeks
+                  </h3>
+                </div>
+                <div>
+                  <CommitHistory data={data.commit_history} />
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section className="py-3">
+            <div className="container px-4 mx-auto">
+              <div className="p-6 bg-gray-500 rounded-xl chart-container flex flex-col">
+                <div className="w-auto mb-2">
+                  <h3 className="text-lg mb-1 text-gray-400 font-medium">
                     Weekly Code Frequency
                   </h3>
                 </div>
@@ -146,12 +133,12 @@ export default function Repository(props) {
           </section>
 
           <div className="flex flex-wrap -mx-3 -mb-3 md:mb-0">
-            <div className="w-full md:w-1/3 px-3 mb-3 md:mb-0 mert-third">
+            <div className="w-full md:w-1/3 px-3 mb-3 md:mb-0 ">
               <section className="py-3">
                 <div className="container px-4 mx-auto">
                   <div className="p-6 bg-gray-500 rounded-xl chart-container flex flex-col">
                     <div className="w-auto mb-2">
-                      <h3 className="text-lg mb-1 text-gray-400 font-bold font-medium">
+                      <h3 className="text-lg mb-1 text-gray-400 font-medium">
                         Total Issue Count
                       </h3>
                     </div>
@@ -162,38 +149,34 @@ export default function Repository(props) {
                 </div>
               </section>
             </div>
-            <div className="w-full md:w-2/3 px-3 mb-3 md:mb-0 mert-forth">
-              <section className="py-3">
-                <div className="container px-4 mx-auto">
-                  <div className="p-6 bg-gray-500 rounded-xl chart-container flex flex-col">
-                    <div className="w-auto mb-2">
-                      <h3 className="text-lg mb-1 text-gray-400 font-bold font-medium">
-                        Recent Issue Activity
-                      </h3>
-                    </div>
+            <section className="py-3">
+              <div className="container px-4 mx-auto">
+                <div className="p-6 bg-gray-500 rounded-xl chart-container flex flex-col">
+                  <div className="w-auto mb-2">
+                    <h3 className="text-lg mb-1 text-gray-400 font-medium">
+                      Recent Issue Activity
+                    </h3>
+                  </div>
 
-                    <div>
-                      <IssueActivity data={data.issue_activity} />
-                    </div>
+                  <div>
+                    <IssueActivity data={data.issue_activity} />
                   </div>
                 </div>
-              </section>
-            </div>
+              </div>
+            </section>
           </div>
 
           <div className="flex flex-wrap -mx-3 -mb-3 md:mb-0">
-            <div className="w-full md:w-1/3 px-3 mb-3 md:mb-0 mert-seven">
-              <section className="py-3">
-                {/* <div className="container px-4 mx-auto"> */}
-                <div className="bg-gray-500 rounded-xl">
-                  <div>
-                    <TopContributors data={data.top_contributors} />
-                  </div>
+            <section className="py-3">
+              {/* <div className="container px-4 mx-auto"> */}
+              <div className="bg-gray-500 rounded-xl">
+                <div>
+                  <TopContributors data={data.top_contributors} />
                 </div>
-                {/* </div> */}
-              </section>
-            </div>
-            <div className="w-full md:w-2/3 px-3 mb-3 md:mb-0 mert-eight">
+              </div>
+              {/* </div> */}
+            </section>
+            <div className="w-full md:w-2/3 px-3 mb-3 md:mb-0 ">
               <section className="py-3">
                 <div className="container px-4 mx-auto">
                   <div
@@ -201,7 +184,7 @@ export default function Repository(props) {
                     style={{ minHeight: "410px" }}
                   >
                     <div className="w-auto mb-2">
-                      <h3 className="text-lg mb-1 text-gray-400 font-bold font-medium">
+                      <h3 className="text-lg mb-1 text-gray-400 font-medium">
                         Recent Stargazing Activity
                       </h3>
                     </div>
@@ -216,12 +199,12 @@ export default function Repository(props) {
           </div>
 
           <div className="flex flex-wrap -mx-3 -mb-3 md:mb-0">
-            <div className="w-full md:w-2/3 px-3 mb-3 md:mb-0 mert-forth">
+            <div className="w-full md:w-2/3 px-3 mb-3 md:mb-0 ">
               <section className="py-3">
                 <div className="container px-4 mx-auto">
                   <div className="p-6 bg-gray-500 rounded-xl chart-container flex flex-col">
                     <div className="w-auto mb-2">
-                      <h3 className="text-lg mb-1 text-gray-400 font-bold font-medium">
+                      <h3 className="text-lg mb-1 text-gray-400 font-medium">
                         Recent Pull Request Activity
                       </h3>
                     </div>
@@ -235,27 +218,25 @@ export default function Repository(props) {
               </section>
             </div>
 
-            <div className="w-full md:w-1/3 px-3 mb-3 md:mb-0 mert-third">
-              <section className="py-3">
-                <div className="container px-4 mx-auto">
-                  <div className="p-6 bg-gray-500 rounded-xl chart-container flex flex-col">
-                    <div className="w-auto mb-2">
-                      <h3 className="text-lg mb-1 text-gray-400 font-bold font-medium">
-                        Total Pull Request Count
-                      </h3>
-                    </div>
+            <section className="py-3">
+              <div className="container px-4 mx-auto">
+                <div className="p-6 bg-gray-500 rounded-xl chart-container flex flex-col">
+                  <div className="w-auto mb-2">
+                    <h3 className="text-lg mb-1 text-gray-400 font-medium">
+                      Total Pull Request Count
+                    </h3>
+                  </div>
 
-                    <div>
-                      <PullRequestCount data={data.pull_request_count} />
-                    </div>
+                  <div>
+                    <PullRequestCount data={data.pull_request_count} />
                   </div>
                 </div>
-              </section>
-            </div>
+              </div>
+            </section>
           </div>
 
           <div className="flex flex-wrap -mx-3 -mb-3 md:mb-0">
-            <div className="w-full md:w-1/2 px-3 mb-3 md:mb-0 mert-forth">
+            <div className="w-full md:w-1/2 px-3 mb-3 md:mb-0">
               <section className="py-3">
                 {/* <div className="container px-4 mx-auto"> */}
                 <div className="bg-gray-500 rounded-xl">
@@ -267,68 +248,28 @@ export default function Repository(props) {
               </section>
             </div>
 
-            <div className="w-full md:w-1/2 px-3 mb-3 md:mb-0 mert-third">
+            <div className="w-full md:w-1/2 px-3 mb-3 md:mb-0">
               <section className="py-3">
-                {/* <div className="container px-4 mx-auto"> */}
                 <div className="bg-gray-500 rounded-xl">
                   <div>
                     <RecentCommits data={data.recent_commits} />
                   </div>
                 </div>
-                {/* </div> */}
               </section>
             </div>
           </div>
 
-          <div className="mert-first">
-            <section className="py-3">
-              {/* <div className="container px-4 mx-auto"> */}
-              <div className="bg-gray-500 rounded-xl">
-                {/* <div cla≥ssName="p-6 bg-gray-500 rounded-xl chart-container"> */}
-                {/* <div className="w-auto mb-2"> */}
-                {/* <h3 className="text-lg mb-1 text-gray-400 font-bold font-medium">Commit History by Weeks</h3> */}
-                {/* </div> */}
-                <section className="">
-                  <div className="container px-4">
-                    <div className="p-6 bg-gray-500 rounded-xl table-container mx-auto text-center">
-                      <p>Made with ♥ by Mert Köklü</p>
-                    </div>
+          <section className="py-3">
+            <div className="bg-gray-500 rounded-xl">
+              <section className="">
+                <div className="container px-4">
+                  <div className="p-6 bg-gray-500 rounded-xl table-container mx-auto text-center">
+                    <p>Made with ♥ by Mert Köklü</p>
                   </div>
-                </section>
-              </div>
-
-              {/* </div> */}
-              {/* </div> */}
-            </section>
-          </div>
-
-          {/* <div className="flex flex-wrap -mx-3 -mb-3 md:mb-0">
-            <div className="w-full md:w-1/2 px-3 mb-3 md:mb-0 mert-seven">
-            <section className="py-3">
-              <div className="container px-4 mx-auto">
-              <div className="p-6 bg-gray-500 rounded-xl chart-container">
-                      <div>
-                        <CommitHistory backend_url={backend_url} repo={repo} />
-                      </div>                  
                 </div>
-              </div>
-            </section>
-
-              
-              </div>
-            <div className="w-full md:w-1/2 px-3 mb-3 md:mb-0 mert-eight">
-            <section className="py-3">
-              <div className="container px-4 mx-auto">
-              <div className="p-6 bg-gray-500 rounded-xl chart-container">
-                      <div>
-                        <CommitHistory backend_url={backend_url} repo={repo} />
-                      </div>                  
-                </div>
-              </div>
-            </section>
-
-              </div>
-          </div> */}
+              </section>
+            </div>
+          </section>
         </div>
       </div>
     </div>
