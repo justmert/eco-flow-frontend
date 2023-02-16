@@ -49,7 +49,7 @@ export default function Projects(props) {
 
   return (
     <div>
-      <title>Page title</title>
+      <title>Projects</title>
       <meta charSet="utf-8" />
       <meta
         name="viewport"
@@ -61,27 +61,19 @@ export default function Projects(props) {
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       />
       <link rel="stylesheet" href="css/tailwind/tailwind.min.css" />
-      <link
-        rel="icon"
-        type="image/png"
-        sizes="32x32"
-        href="shuffle-for-tailwind.png"
-      />
-      <div></div>
+      <link rel="icon" type="image/png" sizes="32x32" href="PNG_ICON" />
 
       <Navbar />
 
       <div className="projects">
-        {/* <section className="bg-coolGray-50 py-4"> */}
         <div className="container mx-auto max-w-7xl py-10 ">
           <div className="mt-4 mx-auto">
             <section className="py-3">
-              {/* <div className="container px-4 mx-auto"> */}
               <div className="bg-gray-500 rounded-xl">
                 <div className="container px-4">
                   <div className="pb-2 pt-2 bg-gray-500 rounded-xl ">
                     <div className="w-auto mb-2">
-                      <h1 className="text-4xl mb-1 text-gray-400 font-bold font-medium">
+                      <h1 className="text-4xl mb-1 text-gray-400 font-medium">
                         Projects
                       </h1>
                       <h2 className="text-gray-400 font-medium">
@@ -98,7 +90,6 @@ export default function Projects(props) {
             {projectList}
           </div>
         </div>
-        {/* </section> */}
       </div>
     </div>
   );

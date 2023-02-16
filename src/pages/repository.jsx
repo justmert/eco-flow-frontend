@@ -1,21 +1,13 @@
 import { useEffect, useState } from "react";
 import React from "react";
 import "../styles/repository.css";
-import CommitHistory from "../components/Repository/CommitHistory/commitHistory";
-import CodeFrequency from "../components/Repository/CodeFrequency/codeFrequency";
-import IssueActivity from "../components/Repository/IssueActivity/issueActivity";
-import PullRequestActivity from "../components/Repository/PullRequestActivity/pullRequestActivity";
-import StarActivity from "../components/Repository/StarActivity/starActivity";
-import IssueCount from "../components/Repository/IssueCount/issueCount";
-import PullRequestCount from "../components/Repository/PullRequestCount/pullRequestCount";
-import TopContributors from "../components/Repository/TopContributors/topContributos";
-import RecentCommits from "../components/Repository/RecentCommits/recentCommits";
-import RecentIssues from "../components/Repository/RecentIssues/recentIssues";
 import RepositoryInfo from "../components/Repository/RepositoryInfo/repositoryInfo";
 import { doc, getDoc } from "firebase/firestore";
 import { useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import Navbar from "../components/Layouts/Navbar/navbar.js";
+import ChartContainer from "../components/Repository/Containers/chartContainer";
+import TableContainer from "../components/Repository/Containers/tableContainer";
 
 export default function Repository(props) {
   const [data, setdata] = useState({});
@@ -82,118 +74,78 @@ export default function Repository(props) {
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       />
       <link rel="stylesheet" href="css/tailwind/tailwind.min.css" />
-      <link
-        rel="icon"
-        type="image/png"
-        sizes="32x32"
-        href="shuffle-for-tailwind.png"
-      />
-      <div></div>
+      <link rel="icon" type="image/png" sizes="32x32" href="PNG_ICON" />
 
       <Navbar />
 
-      <div className="repository">
-        <div className="container px-12 mx-auto">
-          <section className="py-3">
-            <div className="bg-gray-500 rounded-xl">
+      <div>
+        <div className="container px-16 mx-auto">
+          <div>
+            <section className="py-3">
               <div>
                 <RepositoryInfo data={data.repository_info} />
               </div>
-            </div>
-          </section>
+            </section>
+          </div>
+
+          <div>
+            <section className="py-3">
+              <ChartContainer
+                chartType="commit_history"
+                chartHeader="Commit History by Weeks"
+                data={data.commit_history}
+              />
+            </section>
+          </div>
 
           <section className="py-3">
-            <div className="container px-4 mx-auto">
-              <div className="p-6 bg-gray-500 rounded-xl chart-container flex flex-col">
-                <div className="w-auto mb-2">
-                  <h3 className="text-lg mb-1 text-gray-400 font-medium">
-                    Commit History by Weeks
-                  </h3>
-                </div>
-                <div>
-                  <CommitHistory data={data.commit_history} />
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section className="py-3">
-            <div className="container px-4 mx-auto">
-              <div className="p-6 bg-gray-500 rounded-xl chart-container flex flex-col">
-                <div className="w-auto mb-2">
-                  <h3 className="text-lg mb-1 text-gray-400 font-medium">
-                    Weekly Code Frequency
-                  </h3>
-                </div>
-                <div>
-                  <CodeFrequency data={data.code_frequency} />
-                </div>
-              </div>
-            </div>
+            <ChartContainer
+              chartType="code_frequency"
+              chartHeader="Weekly Code Frequency"
+              data={data.code_frequency}
+            />
           </section>
 
           <div className="flex flex-wrap -mx-3 -mb-3 md:mb-0">
             <div className="w-full md:w-1/3 px-3 mb-3 md:mb-0 ">
               <section className="py-3">
-                <div className="container px-4 mx-auto">
-                  <div className="p-6 bg-gray-500 rounded-xl chart-container flex flex-col">
-                    <div className="w-auto mb-2">
-                      <h3 className="text-lg mb-1 text-gray-400 font-medium">
-                        Total Issue Count
-                      </h3>
-                    </div>
-                    <div>
-                      <IssueCount data={data.issue_count} />
-                    </div>
-                  </div>
-                </div>
+                <ChartContainer
+                  chartType="issue_count"
+                  chartHeader="Total Issue Count"
+                  data={data.issue_count}
+                />
               </section>
             </div>
-            <section className="py-3">
-              <div className="container px-4 mx-auto">
-                <div className="p-6 bg-gray-500 rounded-xl chart-container flex flex-col">
-                  <div className="w-auto mb-2">
-                    <h3 className="text-lg mb-1 text-gray-400 font-medium">
-                      Recent Issue Activity
-                    </h3>
-                  </div>
 
-                  <div>
-                    <IssueActivity data={data.issue_activity} />
-                  </div>
-                </div>
-              </div>
-            </section>
+            <div className="w-full md:w-2/3 px-3 mb-3 md:mb-0">
+              <section className="py-3">
+                <ChartContainer
+                  chartType="issue_activity"
+                  chartHeader="Recent Issue Activity"
+                  data={data.issue_activity}
+                />
+              </section>
+            </div>
           </div>
 
           <div className="flex flex-wrap -mx-3 -mb-3 md:mb-0">
-            <section className="py-3">
-              {/* <div className="container px-4 mx-auto"> */}
-              <div className="bg-gray-500 rounded-xl">
-                <div>
-                  <TopContributors data={data.top_contributors} />
-                </div>
-              </div>
-              {/* </div> */}
-            </section>
+            <div className="w-full md:w-1/3 px-3 mb-3 md:mb-0">
+              <section className="py-3">
+                <TableContainer
+                  chartType="top_contributors"
+                  chartHeader="Recent Issue Activity"
+                  data={data.top_contributors}
+                />
+              </section>
+            </div>
+
             <div className="w-full md:w-2/3 px-3 mb-3 md:mb-0 ">
               <section className="py-3">
-                <div className="container px-4 mx-auto">
-                  <div
-                    className="p-6 bg-gray-500 rounded-xl chart-container flex flex-col"
-                    style={{ minHeight: "410px" }}
-                  >
-                    <div className="w-auto mb-2">
-                      <h3 className="text-lg mb-1 text-gray-400 font-medium">
-                        Recent Stargazing Activity
-                      </h3>
-                    </div>
-
-                    <div>
-                      <StarActivity data={data.star_activity} />
-                    </div>
-                  </div>
-                </div>
+                <ChartContainer
+                  chartType="star_activity"
+                  chartHeader="Recent Stargazing Activity"
+                  data={data.star_activity}
+                />
               </section>
             </div>
           </div>
@@ -201,75 +153,46 @@ export default function Repository(props) {
           <div className="flex flex-wrap -mx-3 -mb-3 md:mb-0">
             <div className="w-full md:w-2/3 px-3 mb-3 md:mb-0 ">
               <section className="py-3">
-                <div className="container px-4 mx-auto">
-                  <div className="p-6 bg-gray-500 rounded-xl chart-container flex flex-col">
-                    <div className="w-auto mb-2">
-                      <h3 className="text-lg mb-1 text-gray-400 font-medium">
-                        Recent Pull Request Activity
-                      </h3>
-                    </div>
-
-                    <div>
-                      <PullRequestActivity data={data.pull_request_activity} />
-                      {/* <IssueCount backend_url={backend_url} repo={repo} /> */}
-                    </div>
-                  </div>
-                </div>
+                <ChartContainer
+                  chartType="pull_request_activity"
+                  chartHeader="Recent Pull Request Activity"
+                  data={data.pull_request_activity}
+                />
               </section>
             </div>
 
-            <section className="py-3">
-              <div className="container px-4 mx-auto">
-                <div className="p-6 bg-gray-500 rounded-xl chart-container flex flex-col">
-                  <div className="w-auto mb-2">
-                    <h3 className="text-lg mb-1 text-gray-400 font-medium">
-                      Total Pull Request Count
-                    </h3>
-                  </div>
-
-                  <div>
-                    <PullRequestCount data={data.pull_request_count} />
-                  </div>
-                </div>
-              </div>
-            </section>
+            <div className="w-full md:w-1/3 px-3 mb-3 md:mb-0">
+              <section className="py-3">
+                <ChartContainer
+                  chartType="pull_request_count"
+                  chartHeader="Total Pull Request Count"
+                  data={data.pull_request_count}
+                />
+              </section>
+            </div>
           </div>
 
           <div className="flex flex-wrap -mx-3 -mb-3 md:mb-0">
             <div className="w-full md:w-1/2 px-3 mb-3 md:mb-0">
               <section className="py-3">
-                {/* <div className="container px-4 mx-auto"> */}
-                <div className="bg-gray-500 rounded-xl">
-                  <div>
-                    <RecentIssues data={data.recent_issues} />
-                  </div>
-                </div>
-                {/* </div> */}
+                <TableContainer
+                  chartType="recent_issues"
+                  chartHeader="Recent Issues"
+                  data={data.recent_issues}
+                />
               </section>
             </div>
 
             <div className="w-full md:w-1/2 px-3 mb-3 md:mb-0">
               <section className="py-3">
-                <div className="bg-gray-500 rounded-xl">
-                  <div>
-                    <RecentCommits data={data.recent_commits} />
-                  </div>
-                </div>
+                <TableContainer
+                  chartType="recent_commits"
+                  chartHeader="Recent Commits"
+                  data={data.recent_commits}
+                />
               </section>
             </div>
           </div>
-
-          <section className="py-3">
-            <div className="bg-gray-500 rounded-xl">
-              <section className="">
-                <div className="container px-4">
-                  <div className="p-6 bg-gray-500 rounded-xl table-container mx-auto text-center">
-                    <p>Made with ♥ by Mert Köklü</p>
-                  </div>
-                </div>
-              </section>
-            </div>
-          </section>
         </div>
       </div>
     </div>

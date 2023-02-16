@@ -40,3 +40,27 @@
     transform: rotate(360deg);
   }
 }
+
+.page-bg:before {
+  background: linear-gradient(270deg, #e6d8cb 35%, #c2c5e6);
+  right: 15vh;
+  top: 5vh;
+}
+
+.page-bg:after {
+  background: linear-gradient(180deg, #cbc2e6 25%, #cbdcdf);
+  bottom: 10vh;
+  left: 15vh;
+}
+
+.page-bg:after,
+.page-bg:before {
+  border-radius: 10%;
+  content: "";
+  display: block;
+  filter: blur(8rem);
+  height: 75vh;
+  position: fixed;
+  width: 75vh;
+  z-index: -1;
+}

@@ -1,0 +1,14 @@
+
+
+.awesome-stats {
+    background-color: "";
+    background-color: rgb(238 238 238 / 50%);
+    border-radius: 1.2rem;
+    box-shadow: 0 0.2rem 1.6rem rgb(34 34 34 / 15%);
+  }
+  
+  .awesome-info {
+    background-color: rgb(238 238 238 / 50%);
+    border-radius: 1.2rem;
+    box-shadow: 0 0.2rem 1.6rem rgb(34 34 34 / 15%);
+}

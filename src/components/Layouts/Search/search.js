@@ -1,7 +1,7 @@
 import { InstantSearch, SearchBox, Hits } from "react-instantsearch-hooks-web";
 import algoliasearch from "algoliasearch/lite";
 import "instantsearch.css/themes/satellite.css";
-import "../../../styles/search.css";
+import "./search.css";
 import { Link } from "react-router-dom";
 
 const Hit = ({ hit }) => (

@@ -1,5 +1,5 @@
 import Search from "../Search/search";
-import "../../../styles/navbar.css";
+import "./navbar.css";
 import { Link } from "react-router-dom";
 import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";

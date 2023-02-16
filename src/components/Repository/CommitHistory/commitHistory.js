@@ -1,6 +1,6 @@
 import { useState } from "react";
 import React from "react";
-import Chart from "../chart";
+import Chart from "../Chart/chart";
 import { useEffect } from "react";
 import axios from "axios";
 import * as echarts from "echarts/core";
@@ -8,12 +8,9 @@ import * as echarts from "echarts/core";
 export default function CommitHistory(props) {
   const [option, setOption] = useState(null);
   useEffect(() => {
-    //   axios
-    //     .get(`${props.backend_url}commit_history/${props.repo}`)
-    // .then((props) => {
-      if (!props.data) {
-        return;
-      }
+    if (!props.data) {
+      return;
+    }
     props.data.dataZoom = [
       {
         type: "slider",
@@ -49,10 +46,6 @@ export default function CommitHistory(props) {
     }
 
     setOption(props.data);
-    // })
-    // .catch((error) => {
-    //   console.log(error);
-    // });
   }, [props.data]);
 
   return (
