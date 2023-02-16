@@ -10,8 +10,9 @@ export default function CodeFrequency(props) {
     if (!props.data) {
       return;
     }
+    
     props.data.tooltip = {
-      trigger: "axis",
+      trigger: "item",
     };
 
     props.data.legend = {
@@ -27,7 +28,7 @@ export default function CodeFrequency(props) {
         avoidLabelOverlap: false,
         itemStyle: {
           borderRadius: 10,
-          borderColor: "#fff",
+          borderColor: "#eee",
           borderWidth: 2,
         },
         label: {

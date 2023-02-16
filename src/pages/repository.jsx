@@ -6,16 +6,17 @@ import { doc, getDoc } from "firebase/firestore";
 import { useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import Navbar from "../components/Layouts/Navbar/navbar.js";
-import ChartContainer from "../components/Repository/Containers/chartContainer";
-import TableContainer from "../components/Repository/Containers/tableContainer";
+import ChartContainer from "../components/Layouts/Containers/chartContainer";
+import TableContainer from "../components/Layouts/Containers/tableContainer";
 
 export default function Repository(props) {
-  const [data, setdata] = useState({});
+  const [data, setData] = useState({});
   const { owner, repo } = useParams();
   const location = useLocation();
   if (location.state !== null) {
     var { info } = location.state;
   }
+
   useEffect(() => {
     const docRef = doc(
       props.db,
@@ -26,30 +27,13 @@ export default function Repository(props) {
       .then((docSnap) => {
         console.log(docSnap.data());
         if (docSnap.exists()) {
-          if (!info) {
-            getDoc(
-              doc(
-                props.db,
-                process.env.REACT_APP_FIREBASE_INFO_COLLECTION,
-                `${owner}-${repo}`
-              )
-            )
-              .then((infoSnap) => {
-                if (infoSnap.exists()) {
-                  const repoInfos = infoSnap.data();
-                  setdata({
-                    ...docSnap.data(),
-                    repository_info: repoInfos.info,
-                  });
-                } else {
-                  console.log("No such document!");
-                }
-              })
-              .catch((error) => {
-                console.log("Error getting document:", error);
-              });
+          if (info === undefined) {
+            const selectedInfo = props.info.filter(
+              (item) => item.id === `${owner}-${repo}`
+            )[0].data;
+            setData({ ...docSnap.data(), repository_info: selectedInfo });
           } else {
-            setdata({ ...docSnap.data(), repository_info: info });
+            setData({ ...docSnap.data(), repository_info: info });
           }
         } else {
           console.log("No such document!");
@@ -58,7 +42,7 @@ export default function Repository(props) {
       .catch((error) => {
         console.log("Error getting document:", error);
       });
-  }, [info, owner, repo, props.db]);
+  }, [owner, repo, info, props.db, props.info]);
 
   return (
     <div>
@@ -111,7 +95,7 @@ export default function Repository(props) {
               <section className="py-3">
                 <ChartContainer
                   chartType="issue_count"
-                  chartHeader="Total Issue Count"
+                  chartHeader="Issue Count"
                   data={data.issue_count}
                 />
               </section>
@@ -133,7 +117,7 @@ export default function Repository(props) {
               <section className="py-3">
                 <TableContainer
                   chartType="top_contributors"
-                  chartHeader="Recent Issue Activity"
+                  chartHeader="Top Contributors"
                   data={data.top_contributors}
                 />
               </section>
@@ -165,7 +149,7 @@ export default function Repository(props) {
               <section className="py-3">
                 <ChartContainer
                   chartType="pull_request_count"
-                  chartHeader="Total Pull Request Count"
+                  chartHeader="Pull Request Count"
                   data={data.pull_request_count}
                 />
               </section>

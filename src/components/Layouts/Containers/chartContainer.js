@@ -1,14 +1,14 @@
 import { useState } from "react";
 import React from "react";
 import { useEffect } from "react";
-import CommitHistory from "../CommitHistory/commitHistory";
-import CodeFrequency from "../CodeFrequency/codeFrequency";
-import IssueActivity from "../IssueActivity/issueActivity";
-import PullRequestActivity from "../PullRequestActivity/pullRequestActivity";
-import StarActivity from "../StarActivity/starActivity";
-import IssueCount from "../IssueCount/issueCount";
-import PullRequestCount from "../PullRequestCount/pullRequestCount";
-import "../../Layouts/Containers/containers.css";
+import CommitHistory from "../../Repository/CommitHistory/commitHistory";
+import CodeFrequency from "../../Repository/CodeFrequency/codeFrequency";
+import IssueActivity from "../../Repository/IssueActivity/issueActivity";
+import PullRequestActivity from "../../Repository/PullRequestActivity/pullRequestActivity";
+import StarActivity from "../../Repository/StarActivity/starActivity";
+import IssueCount from "../../Repository/IssueCount/issueCount";
+import PullRequestCount from "../../Repository/PullRequestCount/pullRequestCount";
+import "./containers.css";
 
 export default function ChartContainer(props) {
   const [chart, setChart] = useState(null);

@@ -10,6 +10,9 @@ import { getFirestore } from "firebase/firestore";
 import Projects from "./pages/projects";
 import { Route, Routes } from "react-router-dom";
 import ErrorPage from "./pages/error";
+import { doc, getDoc, getDocs, collection } from "firebase/firestore";
+import { useState } from "react";
+import Dashboard from "./pages/dashboard";
 
 function App() {
   echarts.registerTheme("vintage", chartTheme);
@@ -26,25 +29,60 @@ function App() {
     appId: process.env.REACT_APP_FIREBASE_CONFIG_APP_ID,
     measurementId: process.env.REACT_APP_FIREBASE_CONFIG_MEASUREMENT_ID,
   };
+  const [allProjectInfo, setAllProjectInfo] = useState({});
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
   // Initialize Cloud Firestore and get a reference to the service
   const db = getFirestore(app);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    getDocs(collection(db, process.env.REACT_APP_FIREBASE_INFO_COLLECTION))
+      .then((querySnapshot) => {
+        const allData = [];
+        querySnapshot.forEach((doc) => {
+          allData.push({
+            id: doc.id,
+            data: doc.data().info,
+          });
+        });
+        setAllProjectInfo(allData);
+      })
+      .catch((error) => {
+        console.log("Error getting document:", error);
+      });
+  }, [db]);
   return (
-    <div className="page-bg">
-      <Routes>
-        <Route path="/" element={<Projects db={db} />} />
-        <Route path="/projects">
-          <Route index element={<Projects db={db} />} />
-          <Route path=":owner/:repo" element={<Repository db={db} />} />
-        </Route>
+    <>
+      {allProjectInfo ? (
+        <div className="page-bg">
+          <Routes>
+            <Route
+              path="/"
+              element={<Dashboard db={db} info={allProjectInfo} />}
+            />
+            <Route
+              path="/dashboard"
+              element={<Dashboard db={db} info={allProjectInfo} />}
+            />
+            <Route path="/projects">
+              <Route
+                index
+                element={<Projects db={db} info={allProjectInfo} />}
+              />
+              <Route
+                path=":owner/:repo"
+                element={<Repository db={db} info={allProjectInfo} />}
+              />
+            </Route>
 
-        <Route path="*" element={<ErrorPage />} />
-      </Routes>
-    </div>
+            <Route path="*" element={<ErrorPage />} />
+          </Routes>
+        </div>
+      ) : (
+        <div>loading</div>
+      )}
+    </>
   );
 }
 

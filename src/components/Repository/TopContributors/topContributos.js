@@ -8,6 +8,7 @@ import LoadingSpinner from "../../Layouts/Loading/loading";
 export default function TopContributors(props) {
   const [option, setOption] = useState(null);
   useEffect(() => {
+    console.log("dataaa",props.data)
     if (!props.data) {
       return;
     }
@@ -39,7 +40,7 @@ export default function TopContributors(props) {
                 alt=""
               />
               <div>
-                <h5 className="text-sm leading-none text-gray-400 font-bold font-medium break-all">
+                <h5 className="text-sm leading-none text-gray-400 font-medium break-all">
                   {props.data[i].login}
                 </h5>
                 <span className="text-xs font-medium text-gray-400">

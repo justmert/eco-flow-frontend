@@ -1,23 +1,16 @@
 .project-container {
-    /* background-color: "rgb(86 182 194)" !important; */
     border-radius: 1.2rem;
     box-shadow: 0 0.2rem 1.6rem rgb(34 34 34 / 15%);
-    /* border: .05rem solid rgb(187, 187, 187); */
-    /* background-color: #eee; */
     background-color: rgb(238 238 238 / 70%);
     border: .05rem solid #eee;
 
 }
 
 .project-item {
-    /* background-color: "rgb(86 182 194)" !important; */
     border-radius: 1.2rem;
     box-shadow: 0 0.2rem 1.6rem rgb(34 34 34 / 15%);
-    /* border: .05rem solid rgb(187, 187, 187); */
-    /* background-color: #eee; */
     background-color: rgb(238 238 238 / 75%);
     border: .15rem solid rgb(128 128 128 / 25%);
-    /* add border shadow below */
     box-shadow: 5rem rgb(34 34 34 / 15%);
 
 }

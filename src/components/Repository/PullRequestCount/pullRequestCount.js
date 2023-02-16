@@ -11,7 +11,7 @@ export default function CodeFrequency(props) {
       return;
     }
     props.data.tooltip = {
-      trigger: "axis",
+      trigger: "item",
     };
 
     props.data.legend = {

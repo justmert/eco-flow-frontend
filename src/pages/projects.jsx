@@ -4,48 +4,35 @@ import { doc, getDoc, getDocs, collection } from "firebase/firestore";
 import "../styles/projects.css";
 import ProjectCard from "../components/Projects/ProjectCard/projectCard";
 import Navbar from "../components/Layouts/Navbar/navbar.js";
+import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 export default function Projects(props) {
-  const [projectList, setProjectList] = useState([]);
-
+  const [projectList, setProjectList] = useState(null);
   useEffect(() => {
-    getDocs(
-      collection(props.db, process.env.REACT_APP_FIREBASE_INFO_COLLECTION)
-    )
-      .then((querySnapshot) => {
-        const repoCards = [];
-        function compare(a, b) {
-          if (a.data.stargazers_count < b.data.stargazers_count) {
-            return 1;
-          } else {
-            return -1;
-          }
-        }
-        const allData = [];
-        // querySnapshot.sort( compare );
-        querySnapshot.forEach((doc) => {
-          allData.push({
-            id: doc.id,
-            data: doc.data().info,
-          });
-        });
+    if (Object.keys(props.info).length === 0) {
+      return;
+    }
 
-        allData.sort(compare);
-        allData.forEach((docPair, index) => {
-          // doc.data() is never undefined for query doc snapshots
-          repoCards.push(
-            <div className="px-4 py-4 md:min-w-[22rem]">
-              <ProjectCard key={docPair.id} info={docPair.data} />
-            </div>
-          );
-        });
+    const repoCards = [];
+    function compare(a, b) {
+      if (a.data.stargazers_count < b.data.stargazers_count) {
+        return 1;
+      } else {
+        return -1;
+      }
+    }
+    props.info.sort(compare);
+    props.info.forEach((docPair, index) => {
+      repoCards.push(
+        <div className="px-4 py-4 md:min-w-[22rem]">
+          <ProjectCard key={docPair.id} info={docPair.data} />
+        </div>
+      );
+    });
 
-        setProjectList(repoCards);
-      })
-      .catch((error) => {
-        console.log("Error getting document:", error);
-      });
-  }, [props.db]);
+    setProjectList(repoCards);
+  }, [props.info]);
 
   return (
     <div>
@@ -66,26 +53,17 @@ export default function Projects(props) {
       <Navbar />
 
       <div className="projects">
-        <div className="container mx-auto max-w-7xl py-10 ">
-          <div className="mt-4 mx-auto">
-            <section className="py-3">
-              <div className="bg-gray-500 rounded-xl">
-                <div className="container px-4">
-                  <div className="pb-2 pt-2 bg-gray-500 rounded-xl ">
-                    <div className="w-auto mb-2">
-                      <h1 className="text-4xl mb-1 text-gray-400 font-medium">
-                        Projects
-                      </h1>
-                      <h2 className="text-gray-400 font-medium">
-                        All projects building on{" "}
-                        {process.env.REACT_APP_ECOSYSTEM} ecosystem.
-                      </h2>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
+        <div className="container mx-auto max-w-7xl py-10">
+          <div className="container mt-4 py-3 px-4 rounded-xl pb-2 pt-4 w-auto mb-2">
+            <h1 className="text-4xl mb-1 text-gray-400 font-medium">
+              Projects
+            </h1>
+            <h2 className="text-gray-400 font-medium">
+              All projects building on {process.env.REACT_APP_ECOSYSTEM}{" "}
+              ecosystem.
+            </h2>
           </div>
+
           <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 content-between grid-wrap">
             {projectList}
           </div>
