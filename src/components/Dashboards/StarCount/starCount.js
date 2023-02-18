@@ -30,7 +30,7 @@ export default function StarCount(props) {
         
       </div>
       <div className="p-12 items-center justify-center flex flex-grow">
-        <div className="p-4 animation-pulse-star " id="shape-container" >
+        <div className="p-4 animation-pulse-star" id="shape-container" >
           {props.data && (
             <svg className="absolute overflow-visible">
               <path id="shape" />

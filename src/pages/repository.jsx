@@ -8,6 +8,7 @@ import { useLocation } from "react-router-dom";
 import Navbar from "../components/Layouts/Navbar/navbar.js";
 import ChartContainer from "../components/Layouts/Containers/chartContainer";
 import TableContainer from "../components/Layouts/Containers/tableContainer";
+import Footer from "../components/Layouts/Footer/footer";
 
 export default function Repository(props) {
   const [data, setData] = useState({});
@@ -56,14 +57,14 @@ export default function Repository(props) {
       <link
         rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      />
+    />
       <link rel="stylesheet" href="css/tailwind/tailwind.min.css" />
       <link rel="icon" type="image/png" sizes="32x32" href="PNG_ICON" />
 
       <Navbar />
 
       <div>
-        <div className="container px-16 mx-auto">
+        <div className="mx-auto max-w-7xl">
           <div>
             <section className="py-3">
               <div>
@@ -179,6 +180,7 @@ export default function Repository(props) {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

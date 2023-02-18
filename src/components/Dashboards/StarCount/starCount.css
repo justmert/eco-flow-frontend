@@ -25,7 +25,7 @@
         transform: scale(1);
         /* border: transparent 1px #555; */
         background-color: #eed;
-        box-shadow: 0 0px 50px 60px  rgba(255, 214, 2, 0.3);
+        box-shadow: 0 0px 50px 60px  rgba(255, 214, 2, 0.15);
         border-radius: 100%;
         /* background-o */
     }

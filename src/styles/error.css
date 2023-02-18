@@ -9,3 +9,12 @@
   66%  {top: 20px;}
   100%  {top: 0px}
 }
+.page-center {
+  display: flex;
+  height: calc(100vh - 65px);
+  align-items: center;
+  justify-content: center;
+}
+.flex-col {
+  flex-direction: column;
+}

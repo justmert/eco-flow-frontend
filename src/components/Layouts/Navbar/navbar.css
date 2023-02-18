@@ -1,12 +1,16 @@
 .navbar-item {
   background: transparent;
-  /* background-color: #eee; */
+  /* background: rgb(125,160,226);
+background: linear-gradient(180deg, rgba(125,160,226,0.15) 0%, rgba(148,187,233,0) 100%); */
 }
 
-.navbar-selected {
+.active {
+  /* background-color: rgb(201 201 201 / 75%); */
   background-color: rgb(201 201 201 / 75%);
+  border-radius: 0.375rem /* 6px */;
   /* color: #000; */
 }
+
 
 .navbar-hover:hover {
   background-color: rgb(201 201 201 / 45%);

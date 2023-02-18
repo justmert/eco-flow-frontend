@@ -3,13 +3,16 @@ import "./navbar.css";
 import { Link } from "react-router-dom";
 import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { useLocation } from "react-router-dom";
+import { NavLink } from 'react-router-dom'; // import the NavLink component
 
 export default function Navbar() {
+  
   return (
     <Disclosure as="nav" className="navbar-item ">
       {({ open }) => (
         <>
-          <div className="mx-auto max-w-7xl px-4">
+          <div className="mx-auto max-w-7xl">
             <div className="relative flex h-16 items-center justify-between">
               <div className="flex items-center px-2 lg:px-0">
                 <div className="flex-shrink-0">
@@ -26,12 +29,18 @@ export default function Navbar() {
                 </div>
                 <div className="hidden lg:ml-6 lg:block">
                   <div className="flex space-x-4">
-                    <div className="rounded-md navbar-selected px-3 py-2 text-sm font-medium text-gray-900">
-                      <Link to={`/`}>Dashboard</Link>
+                  <NavLink to="/" activeClassName="active" >
+                    <div className="rounded-md navbar-hover px-3 py-2 text-sm font-medium text-gray-900">
+                      {/* <Link to={`/`}>Dashboard</Link> */}
+                      Dashboard
+
                     </div>
-                    <div className="rounded-md px-3 py-2 text-sm font-medium navbar-hover text-gray-900">
-                      <Link to={`/projects`}>Projects</Link>
+                    </NavLink>
+                    <NavLink  activeClassName="active" to="/projects" >
+                    <div className="rounded-md px-3 py-2 navbar-hover text-sm font-medium text-gray-900">
+                      Projects
                     </div>
+                    </NavLink>
                   </div>
                 </div>
               </div>
