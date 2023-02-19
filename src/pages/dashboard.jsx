@@ -8,6 +8,8 @@ import ChartContainer from "../components/Layouts/Containers/chartContainer";
 import TableContainer from "../components/Layouts/Containers/tableContainer";
 import StarCount from "../components/Dashboards/StarCount/starCount";
 import Footer from "../components/Layouts/Footer/footer";
+import { Link } from "react-router-dom";
+
 export default function Dashboard(props) {
   const [data, setData] = useState([]);
 
@@ -50,48 +52,47 @@ export default function Dashboard(props) {
 
       <div className="dashboard">
         <div className="container mx-auto max-w-7xl pt-10">
-          
-            <div className="container mx-auto px-4">
-              <div className="bg-tra overflow-hidden rounded-lg">
-                <div className="px-8 pt-20">
-                  <div className="md:max-w-2xl text-center mx-auto">
-                    <span className="inline-block mb-3 text-sm text-blue-500 font-bold uppercase tracking-widest">
-                      Best caption here
+          <div className="container mx-auto px-4 ">
+            <div className="bg-tra overflow-hidden rounded-lg">
+              <div className="px-8 py-10">
+                <div className="flex flex-col text-center mx-auto justify-center  items-center">
+                  <h1 className="mb-6 text-5xl max-w-2xl  banner tracking-tight ">
+                    Explore {data.total_project_count} projects building on{" "}
+                    <span className="rounded-full eco-bg ecosystem-box text-4xl border-b-2 font-bold inline-flex px-7 py-1.5 m-4">
+                      {process.env.REACT_APP_ECOSYSTEM}{" "}
                     </span>
-                    <h1 className="font-heading mb-6 text-5xl lg:text-6xl text-gray-900 font-black tracking-tight">
-                      Build what you imagine
-                    </h1>
-                    <p className="mb-8 text-xl font-bold">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Duis venenatis volutpat velit, quis iaculis velit bibendum
-                      a. Maecenas accumsan fermentum nisl.
-                    </p>
-                    <div className="flex flex-wrap justify-center mb-20 -m-2">
-                      <div className="w-full md:w-auto p-2">
-                        <a
-                          className="block w-full px-8 py-3.5 text-lg text-center text-white font-bold bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:ring-blue-200 rounded-full"
-                          href="#"
-                        >
-                          Get Started
-                        </a>
-                      </div>
+                    ecosystem.
+                  </h1>
+                  <div className="flex flex-wrap justify-center -m-2">
+                    <div className="w-full md:w-auto p-2">
+                      <Link to={`/projects`}>
+                        <div className="flex-row flex w-full px-8 py-3.5 text-lg text-center font-bold border-2 see-projects border-gray-600 rounded-full">
+                          Explore Projects
+                          <span className="ml-2">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 16"
+                              strokeWidth={2}
+                              stroke="currentColor"
+                              className="w-5 h-5"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                              />
+                            </svg>
+                          </span>
+                        </div>
+                      </Link>
                     </div>
                   </div>
                 </div>
-
               </div>
             </div>
-
-
-          <div className="mt-4 py-3 rounded-xl pb-2 pt-4 w-auto mb-2">
-            <h1 className="text-4xl mb-1 text-gray-400 font-medium">
-              Dashboard
-            </h1>
-            {/* <h2 className="text-gray-400 font-medium">
-              All projects building on {process.env.REACT_APP_ECOSYSTEM}{" "}
-              ecosystem.
-            </h2> */}
           </div>
+
           <div className="mx-auto">
             {/* <div>
                 <section className="py-3">
@@ -192,8 +193,9 @@ export default function Dashboard(props) {
           </div>
         </div>
       </div>
-
-      <Footer />
+      <div className="relative bottom-0 left-0 right-0 flex justify-center content-center">
+        <Footer />
+      </div>
     </div>
   );
 }

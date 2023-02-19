@@ -1,39 +1,19 @@
 .footer-item {
   background: transparent;
-  /* background-color: #eee; */
-}
-
-.fork-me {
-  background-color: rgba(241, 241, 186, 0.8) !important;
-  color: rgb(30 36 49) !important;
-}
-.fork-me:hover {
-  background-color: rgba(241, 241, 186, 0.7) !important;
-}
-
-.follow-me-button {
-  border: 1px solid #8f9497;
-}
-
-.follow-me-github {
-  background-color: rgba(241, 241, 186, 1) !important;
-  /* opacity: 0.8; */
-}
-
-.follow-me-github:hover {
-  background-color: rgba(241, 241, 186, 0.9) !important;
-  /* opacity: 0.7; */
 }
 
 .site-footer {
   background: transparent;
-  /* background: rgb(226, 141, 155);
-    background: linear-gradient(0deg, rgba(226, 141, 155,0.10) 0%, rgba(148,187,233,0) 100%); */
 }
 
-.follow-me-twitter {
-    background-color: rgb(29, 161, 242, 0.7) !important;
+
+.button-hover:hover {
+  background-color: rgb(201 201 201 / 25%);
+  transition: 0.5s;
 }
-.follow-me-twitter { 
-    background-color: rgb(29, 161, 242, 0.6) !important ;
+
+.button-hover {
+  background-color: rgb(201 201 201 / 45%);
+  border: none;
+  transition: 0.5s;
 }

@@ -1,8 +1,10 @@
 import "../styles/error.css";
 import { Link } from "react-router-dom";
+import Footer from "../components/Layouts/Footer/footer";
 
 export default function ErrorPage() {
   return (
+    <div>
     <div className="page-center flex-col">
       <img
         src="https://static-assets.lenster.xyz/images/gifs/nyan-cat.gif"
@@ -36,6 +38,10 @@ export default function ErrorPage() {
         {/* </a> */}
         </Link>
       </div>
+      <div className="absolute bottom-0 left-0 right-0 flex justify-center content-center">
+      <Footer />
+      </div>
+    </div>
     </div>
   );
 }

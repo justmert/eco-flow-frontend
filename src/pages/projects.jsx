@@ -6,6 +6,7 @@ import ProjectCard from "../components/Projects/ProjectCard/projectCard";
 import Navbar from "../components/Layouts/Navbar/navbar.js";
 import { useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import Footer from "../components/Layouts/Footer/footer";
 
 export default function Projects(props) {
   const [projectList, setProjectList] = useState(null);
@@ -69,6 +70,8 @@ export default function Projects(props) {
           </div>
         </div>
       </div>
-    </div>
+      <div className="absolute bottom-0 left-0 right-0 flex justify-center content-center">
+      <Footer />
+      </div>    </div>
   );
 }
