@@ -65,13 +65,14 @@ export default function Projects(props) {
             </h2>
           </div>
 
-          <div className="grid sm:grid-cols-1 space-x-4 md:grid-cols-2 lg:grid-cols-3 content-between grid-wrap">
+          <div className="grid sm:grid-cols-1 sm:space-x-4 md:grid-cols-2 lg:grid-cols-3 content-between grid-wrap">
             {projectList}
           </div>
         </div>
       </div>
       <div className="absolute bottom-0 left-0 right-0 flex justify-center content-center">
       <Footer />
-      </div>    </div>
+      </div>
+    </div>
   );
 }

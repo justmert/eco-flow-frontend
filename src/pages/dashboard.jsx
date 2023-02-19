@@ -56,8 +56,8 @@ export default function Dashboard(props) {
             <div className="bg-tra overflow-hidden rounded-lg">
               <div className="px-8 py-10">
                 <div className="flex flex-col text-center mx-auto justify-center  items-center">
-                  <h1 className="mb-6 text-5xl max-w-2xl  banner tracking-tight ">
-                    Explore {data.total_project_count} projects building on{" "}
+                  <h1 className="mb-6 text-5xl max-w-3xl  banner tracking-tight ">
+                    Explore activities of {data.total_project_count} project building on{" "}
                     <span className="rounded-full eco-bg ecosystem-box text-4xl border-b-2 font-bold inline-flex px-7 py-1.5 m-4">
                       {process.env.REACT_APP_ECOSYSTEM}{" "}
                     </span>

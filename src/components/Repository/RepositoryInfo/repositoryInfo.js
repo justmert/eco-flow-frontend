@@ -4,6 +4,8 @@ import { useEffect } from "react";
 import axios from "axios";
 import './repositoryInfo.css'
 
+
+
 function RepositoryInfoCard(option) {
   const stats = [
     { name: "Stars", stat: option.stargazers_count },
@@ -111,3 +113,4 @@ function RepositoryInfoCard(option) {
 export default function RepositoryInfo(props) {
   return <>{props.data && RepositoryInfoCard(props.data)}</>;
 }
+
