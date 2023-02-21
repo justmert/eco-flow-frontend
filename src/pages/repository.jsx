@@ -9,7 +9,7 @@ import Navbar from "../components/Layouts/Navbar/navbar.js";
 import ChartContainer from "../components/Layouts/Containers/chartContainer";
 import TableContainer from "../components/Layouts/Containers/tableContainer";
 import Footer from "../components/Layouts/Footer/footer";
-
+import TopContributors from "../components/Repository/TopContributors/topContributors";
 export default function Repository(props) {
   const [data, setData] = useState({});
   const { owner, repo } = useParams();
@@ -26,15 +26,16 @@ export default function Repository(props) {
     );
     getDoc(docRef)
       .then((docSnap) => {
-        console.log(docSnap.data());
         if (docSnap.exists()) {
           if (info === undefined) {
             const selectedInfo = props.info.filter(
               (item) => item.id === `${owner}-${repo}`
             )[0].data;
             setData({ ...docSnap.data(), repository_info: selectedInfo });
+
           } else {
             setData({ ...docSnap.data(), repository_info: info });
+            
           }
         } else {
           console.log("No such document!");
@@ -57,14 +58,14 @@ export default function Repository(props) {
       <link
         rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-    />
+      />
       <link rel="stylesheet" href="css/tailwind/tailwind.min.css" />
       <link rel="icon" type="image/png" sizes="32x32" href="PNG_ICON" />
 
       <Navbar />
 
       <div>
-        <div className="mx-auto max-w-7xl">
+        <div className="mx-auto lg:max-w-7xl">
           <div>
             <section className="py-3">
               <div>
@@ -116,11 +117,18 @@ export default function Repository(props) {
           <div className="flex flex-wrap -mx-3 -mb-3 md:mb-0">
             <div className="w-full md:w-1/3 px-3 mb-3 md:mb-0">
               <section className="py-3">
-                <TableContainer
-                  chartType="top_contributors"
-                  chartHeader="Top Contributors"
-                  data={data.top_contributors}
-                />
+                <div className="flex flex-col p-6 bg-gray-500 rounded-xl top-cont-container">
+                  <div className="flex flex-wrap mb-2 items-center justify-between -m-2 ">
+                    <div className="w-auto p-2 pl-4">
+                      <h3 className="text-lg text-gray-400 font-medium">
+                        Top Contributors
+                      </h3>
+                    </div>
+                  </div>
+                  <div>
+                    <TopContributors data={data.top_contributors} />
+                  </div>
+                </div>
               </section>
             </div>
 

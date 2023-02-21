@@ -23,10 +23,10 @@ export default function ProjectCard(props) {
                     />
                   </div>
                   <div className="w-auto p-2">
-                    <h2 className="text-sm font-medium text-coolGray-900">
+                    <h2 className="text-sm font-medium text-coolGray-900 line-clamp-1">
                       {props.info.name}
                     </h2>
-                    <h3 className="text-xs font-medium text-coolGray-400">
+                    <h3 className="text-xs font-medium text-coolGray-400 line-clamp-1">
                       {props.info.owner.login}
                     </h3>
                   </div>
@@ -37,7 +37,7 @@ export default function ProjectCard(props) {
             <div className="flex flex-wrap px-4 py-4 mx-auto">
               <div className="w-full p-2">
                 <div className="text-center">
-                  <p className="mb-1 text-xs text-coolGray-900 font-semibold leading-none break-word max-h-[2em] overflow-hidden">
+                  <p className="mb-1 text-xs text-coolGray-900 font-semibold line-clamp-2">
                     {props.info.description}
                   </p>
                 </div>

@@ -2,17 +2,12 @@ import { useState } from "react";
 import React from "react";
 import { useEffect } from "react";
 import axios from "axios";
-import './repositoryInfo.css'
+import "./repositoryInfo.css";
+import LoadingSpinner from "../../Layouts/Loading/loading";
+import NoData from "../../Layouts/NoData/noData";
 
-
-
-function RepositoryInfoCard(option) {
-  const stats = [
-    { name: "Stars", stat: option.stargazers_count },
-    { name: "Watchers", stat: option.watchers_count },
-    { name: "Forks", stat: option.forks_count },
-  ];
-
+export default function RepositoryInfo(props) {
+  const [option, setOption] = useState(null);
   function formatDate(dateString) {
     const date = new Date(dateString);
     const options = {
@@ -26,91 +21,123 @@ function RepositoryInfoCard(option) {
     return humanReadableDate;
   }
 
-  return (
-    <div className="p-6 rounded-xl awesome-info">
-      <figure className="md:flex bg-slate-100 rounded-xl p-0 ">
-        <div className="flex place-content-center">
-          <a
-            className="text-gray-300 hover:text-gray-200 "
-            href={option.owner.html_url}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <img
-              className="float-left mx-auto rounded-full"
-              style={{
-                maxHeight: "100px",
-                maxWidth: "100px",
-                width: "100px",
-                height: "100px",
-              }}
-              src={option.owner.avatar_url}
-              alt=""
-            />
-          </a>
+  useEffect(() => {
+    if (props.data === undefined) {
+      setOption(
+        <div>
+          <LoadingSpinner />{" "}
         </div>
-        <div className="text-center md:text-left md:pl-8 align-middle	space-y-4 w-full">
-          <a href={option.html_url} target="_blank" rel="noreferrer">
-            <span className="text-3xl text-gray-400 font-black font-heading">
-              {option.owner.login}/{option.name}
-            </span>
-          </a>
-          {/* <blockquote> */}
-          <p className="text-lg">{option.description}</p>
+      );
+      return;
+    } else if (props.data === null) {
+      setOption(
+        <div>
+          <NoData />{" "}
         </div>
-      </figure>
-      <div className="mx-auto items-center mt-3 sm:mx-auto ">
-        {option.license && (
-          <span
-            style={{ backgroundColor: "rgba(72, 209, 107, 0.4)" }}
-            className="inline-flex items-center rounded-full px-3 py-0.5 text-sm font-medium text-gray-800 mr-5"
-          >
-            License: {option.license.name}
-          </span>
-        )}
-        {option.language && (
-          <span
-            style={{ backgroundColor: "rgba(251, 194, 82, 0.4)" }}
-            className="inline-flex items-center rounded-full px-3 py-0.5 text-sm font-medium text-gray-800 mr-5"
-          >
-            Language: {option.language}
-          </span>
-        )}
-        <span
-          style={{ backgroundColor: "rgba(134, 163, 184, 0.4)" }}
-          className="inline-flex items-center rounded-full px-3 py-0.5 text-sm font-medium text-gray-800 mr-5"
-        >
-          Created At: {formatDate(option.created_at)}
-        </span>
-        <span
-          style={{ backgroundColor: "rgba(244, 132, 132, 0.4)" }}
-          className="inline-flex items-center rounded-full px-3 py-0.5 text-sm font-medium text-gray-800  mr-5"
-        >
-          Last Updated At: {formatDate(option.updated_at)}
-        </span>
-      </div>
-      <div>
-        <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3 ">
-          {stats.map((item) => (
-            <div
-              key={item.name}
-              className="overflow-hidden rounded-lg px-4 py-5 shadow sm:p-6 awesome-stats bg-gray-100 bg-opacity-30"
-            >
-              <dt className="truncate text-sm font-medium text-gray-500">
-                {item.name}
-              </dt>
-              <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-900">
-                {item.stat}
-              </dd>
+      );
+      return;
+    } else {
+      const stats = [
+        { name: "Stars", stat: props.data.stargazers_count },
+        { name: "Watchers", stat: props.data.watchers_count },
+        { name: "Forks", stat: props.data.forks_count },
+      ];
+
+      setOption(
+        <div>
+          <div className="mx-auto p-6 rounded-xl awesome-info">
+            <div className="flex flex-col md:flex-row">
+              <div className="md:space-x-0 space-x-4 space-y-4 md:space-y-0">
+                <div className="justify-center md:justify-start">
+                  <a
+                    className="text-gray-300 hover:text-gray-200 "
+                    href={props.data.owner.html_url}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <img
+                      className="md:float-left max-h-[8rem] mx-auto rounded-full object-left object-scale-down md:mr-8"
+                      src={props.data.owner.avatar_url}
+                      alt="project avatar url"
+                    />
+                  </a>
+                </div>
+                <div className="text-center md:text-left align-middle w-full">
+                  <div className="space-y-4">
+                    <a
+                      href={props.data.html_url}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <p className="text-3xl text-gray-400 font-black font-heading">
+                        {props.data.owner.login}/{props.data.name}
+                      </p>
+                    </a>
+                    <p className="text-lg text-gray-400 font-medium">
+                      {props.data.description}
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
-          ))}
-        </dl>
-      </div>
-    </div>
-  );
+            <div className="mt-6 flex md:flex-row flex-col space-x-0 md:space-x-4 space-y-4 md:space-y-0 mx-auto items-center justify-center place-content-center md:items-start md:justify-start md:place-content-start">
+              {props.data.license && (
+                <span
+                  // style={{ backgroundColor: "rgba(72, 209, 107, 0.4)" }}
+                  className="inline-flex info-badge text-center rounded-full py-1 px-2 text-sm font-medium text-gray-400"
+                >
+                  License: {props.data.license.name}
+                </span>
+              )}
+              {props.data.language && (
+                <span
+                  // style={{ backgroundColor: "rgba(251, 194, 82, 0.4)" }}
+                  className="inline-flex info-badge text-center rounded-full py-1 px-2 text-sm font-medium text-gray-400"
+                >
+                  Language: {props.data.language}
+                </span>
+              )}
+              <span
+                // style={{ backgroundColor: "rgba(134, 163, 184, 0.4)" }}
+                className="inline-flex info-badge text-center rounded-full py-1 px-2 text-sm font-medium text-gray-400"
+              >
+                Created At: {formatDate(props.data.created_at)}
+              </span>
+              <span
+                // style={{ backgroundColor: "rgba(244, 132, 132, 0.4)" }}
+                className="inline-flex info-badge text-center rounded-full py-1 px-2 text-sm font-medium text-gray-400"
+              >
+                Last Updated At: {formatDate(props.data.updated_at)}
+              </span>
+            </div>
+          </div>
+          <div>
+            <div>
+              <dl className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3 ">
+                {stats.map((item) => (
+                  <div
+                    key={item.name}
+                    className="overflow-hidden rounded-lg px-4 py-5 shadow sm:p-6 awesome-stats "
+                  >
+                    <dt className="truncate text-sm font-medium text-gray-500">
+                      {item.name}
+                    </dt>
+                    <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-900">
+                      {item.stat}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </div>
+        </div>
+      );
+    }
+  }, [props.data]);
+
+  return (<div>{option}</div>);
 }
 
-export default function RepositoryInfo(props) {
-  return <>{props.data && RepositoryInfoCard(props.data)}</>;
-}
-
+// export default function RepositoryInfo(props) {
+//   return <>{props.data && RepositoryInfoCard(props.data)}</>;
+// }

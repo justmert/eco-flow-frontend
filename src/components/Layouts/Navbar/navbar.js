@@ -6,15 +6,18 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useLocation } from "react-router-dom";
 import { NavLink } from "react-router-dom"; // import the NavLink component
 import gitbubIcon2 from "../../../assets/github2.svg";
+import ProjectForm from "../Form/form";
+import { useState } from "react";
 
 export default function Navbar() {
+  const [showForm, setShowForm] = useState(false);
   return (
     <Disclosure as="nav" className="navbar-item ">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl">
             <div className="relative flex h-16 items-center justify-between">
-              <div className="flex items-center px-2 lg:px-0">
+              <div className="flex items-center px-2">
                 <div className="flex-shrink-0">
                   <img
                     className="block h-8 w-auto lg:hidden"
@@ -56,9 +59,9 @@ export default function Navbar() {
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
                           viewBox="0 0 24 16"
-                          stroke-width="2"
+                          strokeWidth="2"
                           stroke="currentColor"
-                          class=""
+                          className=""
                         >
                           <path
                             stroke-linecap="round"
@@ -89,6 +92,30 @@ export default function Navbar() {
                 </div>
               </div>
               <div className="flex flex-1 justify-center lg:ml-6 lg:justify-end">
+                <ProjectForm open={showForm} setOpen={setShowForm} />
+                <button
+                  onClick={() => {
+                    setShowForm(!showForm);
+                  }}
+                  className="hidden lg:flex rounded-md px-3 mr-2 justify-center content-center items-center place-content-center navbar-hover text-sm font-medium text-gray-900"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-4 h-4"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M12 4.5v15m7.5-7.5h-15"
+                    />
+                  </svg>
+                  <span className="pl-2 mr-1">Submit</span>
+                </button>
+
                 <div className="w-full max-w-lg">
                   <Search />
                 </div>

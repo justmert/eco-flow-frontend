@@ -33,7 +33,7 @@ export default function ChartContainer(props) {
   return (
     <div className="p-6 rounded-xl chart-container flex flex-col">
       <div className="w-auto mb-3">
-        <h3 className="text-lg text-gray-400 font-medium">
+        <h3 className="text-lg pl-2 text-gray-400 font-medium">
           {props.chartHeader}
         </h3>
       </div>

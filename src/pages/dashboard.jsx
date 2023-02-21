@@ -9,6 +9,7 @@ import TableContainer from "../components/Layouts/Containers/tableContainer";
 import StarCount from "../components/Dashboards/StarCount/starCount";
 import Footer from "../components/Layouts/Footer/footer";
 import { Link } from "react-router-dom";
+import TopContributors from "../components/Repository/TopContributors/topContributors";
 
 export default function Dashboard(props) {
   const [data, setData] = useState([]);
@@ -51,13 +52,13 @@ export default function Dashboard(props) {
       <Navbar />
 
       <div className="dashboard">
-        <div className="container mx-auto max-w-7xl pt-10">
+        <div className="container mx-auto max-w-7xl px-4 pt-10">
           <div className="container mx-auto px-4 ">
             <div className="bg-tra overflow-hidden rounded-lg">
               <div className="px-8 py-10">
                 <div className="flex flex-col text-center mx-auto justify-center  items-center">
                   <h1 className="mb-6 text-5xl max-w-3xl  banner tracking-tight ">
-                    Explore activities of {data.total_project_count} project building on{" "}
+                  Explore the activities of {data.total_project_count} projects building on{" "}
                     <span className="rounded-full eco-bg ecosystem-box text-4xl border-b-2 font-bold inline-flex px-7 py-1.5 m-4">
                       {process.env.REACT_APP_ECOSYSTEM}{" "}
                     </span>
@@ -122,13 +123,20 @@ export default function Dashboard(props) {
 
             <div className="flex flex-wrap -mx-3 -mb-3 md:mb-0">
               <div className="w-full md:w-1/3 px-3 mb-3 md:mb-0 ">
-                <section className="py-3">
-                  <TableContainer
-                    chartType="top_contributors"
-                    chartHeader="Overall Top Contributors"
-                    data={data.top_contributors}
-                  />
-                </section>
+              <section className="py-3">
+              <div className="flex flex-col p-6 bg-gray-500 rounded-xl top-cont-container">
+      <div className="flex flex-wrap mb-2 items-center justify-between -m-2 " >
+        <div className="w-auto p-2 pl-4">
+          <h3 className="text-lg text-gray-400 font-medium">
+            Top Contributors
+          </h3>
+        </div>
+      </div>
+      <div>
+      <TopContributors data={data.top_contributors} />
+      </div>
+    </div>
+    </section>
               </div>
 
               <div className="w-full md:w-2/3 px-3 mb-3 md:mb-0">
@@ -154,7 +162,7 @@ export default function Dashboard(props) {
               </div>
               <div className="w-full md:w-1/3 px-3 mb-3 md:mb-0">
                 <div className="py-3">
-                  <StarCount chartHeader="Ecosystem Star Count" data={13} />
+                  <StarCount chartHeader="Ecosystem Star Count" data={data.total_star_count} />
                 </div>
               </div>
 

@@ -1,0 +1,13 @@
+.selective-border {
+  padding: 10px
+  /* margin: 10px; */
+}
+
+.selective-border:hover {
+  border: 0px solid #000;
+  border-radius: 1.2rem /* 6px */;
+  box-shadow: 0 0.1rem 0.2rem rgb(34 34 34 / 5%),
+    0 0.4rem 1.6rem rgb(34 34 34 / 15%);
+  text-decoration: none;
+  transform: translateY(-0.1rem);
+}

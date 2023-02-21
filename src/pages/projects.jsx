@@ -54,7 +54,7 @@ export default function Projects(props) {
       <Navbar />
 
       <div className="projects">
-        <div className="container mx-auto max-w-7xl pt-10">
+        <div className="container mx-auto max-w-7xl px-4 pt-10">
           <div className="mt-4 py-3 rounded-xl pb-2 pt-4 w-auto mb-2">
             <h1 className="text-4xl mb-1 text-gray-400 font-medium">
               Projects
@@ -65,7 +65,7 @@ export default function Projects(props) {
             </h2>
           </div>
 
-          <div className="grid sm:grid-cols-1 sm:space-x-4 md:grid-cols-2 lg:grid-cols-3 content-between grid-wrap">
+          <div className="grid sm:grid-cols-1 md:space-x-4 md:grid-cols-2 lg:grid-cols-3 content-between grid-wrap">
             {projectList}
           </div>
         </div>

@@ -1,17 +1,21 @@
 .project-container {
-    border-radius: 1.2rem;
-    box-shadow: 0 0.2rem 1.6rem rgb(34 34 34 / 15%);
-    background-color: rgb(238 238 238 / 70%);
-    border: .05rem solid #eee;
-
+  border-radius: 1.2rem;
+  box-shadow: 0 0.2rem 1.6rem rgb(34 34 34 / 15%);
+  background-color: rgb(238 238 238 / 70%);
+  border: 0.05rem solid #eee;
 }
 
 .project-item {
-    border-radius: 1.2rem;
-    box-shadow: 0 0.2rem 1.6rem rgb(34 34 34 / 15%);
-    background-color: rgb(238 238 238 / 75%);
-    border: .15rem solid rgb(128 128 128 / 25%);
-    box-shadow: 5rem rgb(34 34 34 / 15%);
-
+  border-radius: 1.2rem;
+  /* box-shadow: 0 0.2rem 1.6rem rgb(34 34 34 / 15%); */
+  background-color: rgb(238 238 238 / 75%);
+  border: 0.15rem solid rgb(128 128 128 / 40%);
+  /* box-shadow: 5rem rgb(34 34 34 / 15%); */
 }
 
+.project-item:hover {
+  box-shadow: 0 0.1rem 0.2rem rgb(34 34 34 / 5%),
+    0 0.4rem 1.6rem rgb(34 34 34 / 15%);
+  text-decoration: none;
+  transform: translateY(-0.1rem);
+}

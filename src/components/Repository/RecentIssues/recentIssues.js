@@ -4,6 +4,8 @@ import Chart from "../Chart/chart";
 import { useEffect } from "react";
 import axios from "axios";
 import LoadingSpinner from "../../Layouts/Loading/loading";
+import NoData from "../../Layouts/NoData/noData";
+import "./recentIssues.css";
 
 export default function RecentIssues(props) {
   const [option, setOption] = useState(null);
@@ -21,60 +23,69 @@ export default function RecentIssues(props) {
     return humanReadableDate;
   }
   useEffect(() => {
-    if (!props.data) {
-      return;
-    }
-    const editedData = [];
-    for (let i = 0; i < props.data.length; i++) {
-      editedData.push(
-        <div
-          key={i}
-          className="flex py-3 items-center justify-between bg-gray-500 rounded-md"
-        >
-          <div className="flex items-center">
-            <a
-              href={props.data[i].user.html_url}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <img
-                className="h-12 w-12 mr-3 rounded-full"
-                src={props.data[i].user.avatar_url}
-                alt=""
-                style={{
-                  minWidth: "48px",
-                  minHeight: "48px",
-                  maxWidth: "48px",
-                  maxHeight: "48px",
-                  marginRight: "20px",
-                }}
-              />
-            </a>
-            <div>
-              <h5 className="text-sm leading-none text-gray-400 font-medium break-all max-h-[1em] overflow-hidden">
-                <a
-                  // className="text-gray-300 hover:text-gray-200"
-                  href={props.data[i].html_url}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {props.data[i].title}
-                </a>
-              </h5>
-              <span className="text-xs font-medium text-gray-400">
-                {props.data[i].user.login} • {props.data[i].state.toUpperCase()}{" "}
-                • {props.data[i].comments} comments • Created at{" "}
-                {formatDate(props.data[i].created_at)}
-              </span>
-            </div>
-          </div>
-          <div></div>
+    console.log(props.data);
+    if (props.data === undefined) {
+      setOption(
+        <div>
+          <LoadingSpinner />{" "}
         </div>
       );
-    }
+      return;
+    } else if (props.data === null) {
+      setOption(
+        <div>
+          <NoData />{" "}
+        </div>
+      );
+      return;
+    } else {
+      const editedData = [];
+      for (let i = 0; i < props.data.length; i++) {
+        editedData.push(
+          <a
+            // className="text-gray-300 hover:text-gray-200"
+            href={props.data[i].html_url}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <div
+              key={i}
+              className="flex py-3 selective-border items-center justify-between bg-gray-500 rounded-md mt-2"
+            >
+              <div className="flex items-center">
+                <img
+                  className="h-12 w-12 mr-3 rounded-full"
+                  src={props.data[i].user.avatar_url}
+                  alt=""
+                  style={{
+                    minWidth: "48px",
+                    minHeight: "48px",
+                    maxWidth: "48px",
+                    maxHeight: "48px",
+                    marginRight: "20px",
+                  }}
+                />
+                <div>
+                  <h5 className="text-sm text-gray-400 font-medium line-clamp-1">
+                    {props.data[i].title}
+                  </h5>
+                  <span className="text-xs line-clamp-1 font-medium text-gray-400">
+                    {props.data[i].user.login} •{" "}
+                    {props.data[i].state.toUpperCase()} •{" "}
+                    {props.data[i].comments} comments • Created at{" "}
+                    {formatDate(props.data[i].created_at)}
+                  </span>
+                </div>
+              </div>
+              <div></div>
+            </div>
+          </a>
+        );
+      }
 
-    setOption(editedData);
+      setOption(editedData);
+    }
   }, [props.data]);
 
-  return <div>{option ? option : <LoadingSpinner />}</div>;
+  return <div>{option}</div>;
 }
