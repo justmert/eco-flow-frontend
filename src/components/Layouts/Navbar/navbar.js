@@ -8,28 +8,33 @@ import { NavLink } from "react-router-dom"; // import the NavLink component
 import gitbubIcon2 from "../../../assets/github2.svg";
 import { useState } from "react";
 import { SliderButton } from "@typeform/embed-react";
-
+import Logo from "../../../assets/logo.png";
 export default function Navbar() {
   // const [showForm, setShowForm] = useState(false);
   return (
     <Disclosure as="nav" className="navbar-item ">
       {({ open }) => (
         <>
-          <div className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-7xl py-2">
             <div className="relative flex h-16 items-center justify-between">
               <div className="flex items-center px-2">
                 <div className="flex-shrink-0">
-                  <img
-                    className="block h-8 w-auto lg:hidden"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                    alt="yuugenlabs"
-                  />
-                  <img
-                    className="hidden h-8 w-auto lg:block"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                    alt="yuugenlabs"
-                  />
+                  <NavLink to="/" activeclassname="active">
+                    <img
+                      width={40}
+                      className="block h-16 w-auto lg:hidden"
+                      src={Logo}
+                      alt="logo"
+                    />
+                    <img
+                      width={40}
+                      className="hidden h-16 w-auto lg:block"
+                      src={Logo}
+                      alt="logo"
+                    />
+                  </NavLink>
                 </div>
+
                 <div className="hidden lg:ml-6 lg:block">
                   <div className="flex space-x-4">
                     <NavLink to="/" activeclassname="active">
