@@ -37,7 +37,7 @@ export default function Dashboard(props) {
   return (
     <>
       <head>
-        <title>LensPulse</title>
+        <title>{process.env.REACT_APP_PROJECT_NAME}</title>
         <meta charSet="utf-8" />
         <meta
           name="viewport"
@@ -112,7 +112,7 @@ export default function Dashboard(props) {
                 <section className="py-3">
                   <ChartContainer
                     chartType="commit_history"
-                    chartHeader="Commit History by Weeks"
+                    chartHeader={`${process.env.REACT_APP_ECOSYSTEM} Ecosystem Total Commit History by Weeks`}
                     data={data.commit_history}
                   />
                 </section>
@@ -121,7 +121,7 @@ export default function Dashboard(props) {
               <section className="py-3">
                 <ChartContainer
                   chartType="code_frequency"
-                  chartHeader="Weekly Code Frequency"
+                  chartHeader={`${process.env.REACT_APP_ECOSYSTEM} Ecosystem Code Frequency`}
                   data={data.code_frequency}
                 />
               </section>
@@ -133,7 +133,7 @@ export default function Dashboard(props) {
                       <div className="flex flex-wrap mb-2 items-center justify-between -m-2 ">
                         <div className="w-auto p-2 pl-4">
                           <h3 className="text-lg text-gray-400 font-medium">
-                            Top Contributors
+                          {`${process.env.REACT_APP_ECOSYSTEM} Ecosystem Top Contributors`}
                           </h3>
                         </div>
                       </div>
@@ -149,7 +149,7 @@ export default function Dashboard(props) {
                     <div className="p-6 rounded-xl chart-container flex flex-col">
                       <div className="w-auto mb-3">
                         <h3 className="text-lg pl-2 text-gray-400 font-medium">
-                          Issue Activity
+                        {`${process.env.REACT_APP_ECOSYSTEM} Ecosystem Issue Activity`}
                         </h3>
                       </div>
                       <div>
@@ -165,7 +165,7 @@ export default function Dashboard(props) {
                   <section className="py-3">
                     <ChartContainer
                       chartType="issue_count"
-                      chartHeader="Total Issue Count"
+                      chartHeader={`${process.env.REACT_APP_ECOSYSTEM} Ecosystem Total Issue Count`}
                       data={data.issue_count}
                     />
                   </section>
@@ -173,7 +173,7 @@ export default function Dashboard(props) {
                 <div className="w-full md:w-1/3 px-3 mb-3 md:mb-0">
                   <div className="py-3">
                     <StarCount
-                      chartHeader="Ecosystem Star Count"
+                      chartHeader={`${process.env.REACT_APP_ECOSYSTEM} Ecosystem Star Count`}
                       data={data.total_star_count}
                     />
                   </div>
@@ -183,7 +183,7 @@ export default function Dashboard(props) {
                   <section className="py-3">
                     <ChartContainer
                       chartType="pull_request_count"
-                      chartHeader="Total Pull Request Count"
+                      chartHeader={`${process.env.REACT_APP_ECOSYSTEM} Total Pull Request Count`}
                       data={data.pull_request_count}
                     />
                   </section>
@@ -195,7 +195,7 @@ export default function Dashboard(props) {
                   <section className="py-3">
                     <TableContainer
                       chartType="recent_issues"
-                      chartHeader="Recent Issues"
+                      chartHeader={`${process.env.REACT_APP_ECOSYSTEM} Ecosystem Recent Issues`}
                       data={data.recent_issues}
                     />
                   </section>
@@ -205,7 +205,7 @@ export default function Dashboard(props) {
                   <section className="py-3">
                     <TableContainer
                       chartType="recent_commits"
-                      chartHeader="Recent Commits"
+                      chartHeader={`${process.env.REACT_APP_ECOSYSTEM} Ecosystem Recent Commits`}
                       data={data.recent_commits}
                     />
                   </section>
