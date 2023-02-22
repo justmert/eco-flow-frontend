@@ -33,6 +33,7 @@ export default function TopContributors(props) {
             href={props.data[i].html_url}
             target="_blank"
             rel="noreferrer"
+            key={i}
           >
             <div
               key={i}

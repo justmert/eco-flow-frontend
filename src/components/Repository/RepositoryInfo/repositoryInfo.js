@@ -46,7 +46,7 @@ export default function RepositoryInfo(props) {
       setOption(
         <div>
           <div className="mx-auto p-6 rounded-xl awesome-info">
-            <div className="flex flex-col md:flex-row">
+            <div className="flex flex-col ">
               <div className="md:space-x-0 space-x-4 space-y-4 md:space-y-0">
                 <div className="justify-center md:justify-start">
                   <a

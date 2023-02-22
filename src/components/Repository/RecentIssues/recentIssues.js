@@ -47,6 +47,7 @@ export default function RecentIssues(props) {
             href={props.data[i].html_url}
             target="_blank"
             rel="noreferrer"
+            key={i}
           >
             <div
               key={i}

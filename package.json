@@ -9,6 +9,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@typeform/embed-react": "^2.15.0",
     "algoliasearch": "^4.14.3",
     "axios": "^1.2.5",
     "echarts-for-react": "^3.0.2",

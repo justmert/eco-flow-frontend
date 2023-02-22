@@ -6,11 +6,11 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useLocation } from "react-router-dom";
 import { NavLink } from "react-router-dom"; // import the NavLink component
 import gitbubIcon2 from "../../../assets/github2.svg";
-import ProjectForm from "../Form/form";
 import { useState } from "react";
+import { SliderButton } from "@typeform/embed-react";
 
 export default function Navbar() {
-  const [showForm, setShowForm] = useState(false);
+  // const [showForm, setShowForm] = useState(false);
   return (
     <Disclosure as="nav" className="navbar-item ">
       {({ open }) => (
@@ -32,13 +32,13 @@ export default function Navbar() {
                 </div>
                 <div className="hidden lg:ml-6 lg:block">
                   <div className="flex space-x-4">
-                    <NavLink to="/" activeClassName="active">
+                    <NavLink to="/" activeclassname="active">
                       <div className="rounded-md navbar-hover px-3 py-2 text-sm font-medium text-gray-900">
                         {/* <Link to={`/`}>Dashboard</Link> */}
                         Dashboard
                       </div>
                     </NavLink>
-                    <NavLink activeClassName="active" to="/projects">
+                    <NavLink activeclassname="active" to="/projects">
                       <div className="rounded-md px-3 py-2 navbar-hover text-sm font-medium text-gray-900">
                         Projects
                       </div>
@@ -64,8 +64,8 @@ export default function Navbar() {
                           className=""
                         >
                           <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                             d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
                           />
                         </svg>
@@ -77,12 +77,12 @@ export default function Navbar() {
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
                           viewBox="0 0 24 24"
-                          stroke-width="1.5"
+                          strokeWidth="1.5"
                           stroke="currentColor"
                         >
                           <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                             d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
                           />
                         </svg> */}
@@ -92,7 +92,7 @@ export default function Navbar() {
                 </div>
               </div>
               <div className="flex flex-1 justify-center lg:ml-6 lg:justify-end">
-                <ProjectForm open={showForm} setOpen={setShowForm} />
+                {/* <ProjectForm open={showForm} setOpen={setShowForm} />
                 <button
                   onClick={() => {
                     setShowForm(!showForm);
@@ -114,7 +114,29 @@ export default function Navbar() {
                     />
                   </svg>
                   <span className="pl-2 mr-1">Submit</span>
-                </button>
+                </button> */}
+
+                {/* <TForm /> */}
+                <SliderButton
+                  id={process.env.REACT_APP_TYPEFORM_ID}
+                  className="hidden lg:flex rounded-md px-3 mr-2 justify-center content-center items-center place-content-center navbar-hover text-sm font-medium text-gray-900"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-4 h-4"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M12 4.5v15m7.5-7.5h-15"
+                    />
+                  </svg>
+                  <span className="pl-2 mr-1">Submit</span>
+                </SliderButton>
 
                 <div className="w-full max-w-lg">
                   <Search />

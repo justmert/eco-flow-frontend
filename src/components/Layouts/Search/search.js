@@ -5,11 +5,12 @@ import "./search.css";
 import { Link } from "react-router-dom";
 
 const Hit = ({ hit }) => (
+  <div className="w-full cursor-pointer">
   <Link
     to={`/projects/${hit.info.owner.login}/${hit.info.name}`}
     state={{ info: hit.info }}
   >
-    <div className="flex items-center rounded-lg  p-2 hit-item cursor-pointer">
+    <div className="flex items-center rounded-lg  p-2 hit-item  ">
       <img
         className="h-10 w-10 rounded-full object-cover"
         src={hit.info.owner.avatar_url}
@@ -19,12 +20,13 @@ const Hit = ({ hit }) => (
         <h3 className="font-medium leading-6 text-gray-900">
           {hit.info.name}/{hit.info.owner.login}
         </h3>
-        <p className="text-sm leading-none break-word max-h-[2em] overflow-hidden text-gray-500">
+        <p className="text-sm line-clamp-1 text-gray-500">
           {hit.info.description}
         </p>
       </div>
     </div>
   </Link>
+  </div>
 );
 
 export default function Search(props) {
@@ -72,7 +74,7 @@ export default function Search(props) {
       <Hits
         hitComponent={Hit}
         classNames={{
-          list: "absolute max-w-lg w-full mt-8 shadow-lg overflow-hidden z-10 ",
+          list: "absolute max-w-lg w-full mt-8 shadow-lg overflow-hidden z-10 max-h-[24rem] overflow-y-auto ",
           item: "",
         }}
       />

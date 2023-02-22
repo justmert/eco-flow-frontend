@@ -6,7 +6,7 @@ import axios from "axios";
 import LoadingSpinner from "../../Layouts/Loading/loading";
 import NoData from "../../Layouts/NoData/noData";
 
-export default function CodeFrequency(props) {
+export default function PullRequestActivity(props) {
   const [option, setOption] = useState(null);
   useEffect(() => {
     if (props.data === undefined) {

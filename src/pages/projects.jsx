@@ -26,7 +26,7 @@ export default function Projects(props) {
     props.info.sort(compare);
     props.info.forEach((docPair, index) => {
       repoCards.push(
-        <div className="space-x-4 py-4 md:min-w-[22rem]">
+        <div className="space-x-4 py-4 md:min-w-[22rem]" key={docPair.id}>
           <ProjectCard key={docPair.id} info={docPair.data} />
         </div>
       );
@@ -65,12 +65,12 @@ export default function Projects(props) {
             </h2>
           </div>
 
-          <div className="grid sm:grid-cols-1 md:space-x-4 md:grid-cols-2 lg:grid-cols-3 content-between grid-wrap">
+          <div className="grid sm:grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 content-between grid-wrap">
             {projectList}
           </div>
         </div>
       </div>
-      <div className="absolute bottom-0 left-0 right-0 flex justify-center content-center">
+      <div className="relative bottom-0 left-0 right-0 flex justify-center content-center">
       <Footer />
       </div>
     </div>

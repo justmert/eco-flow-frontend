@@ -65,7 +65,7 @@ export default function Repository(props) {
       <Navbar />
 
       <div>
-        <div className="mx-auto lg:max-w-7xl">
+        <div className="container mx-auto max-w-7xl px-4 ">
           <div>
             <section className="py-3">
               <div>

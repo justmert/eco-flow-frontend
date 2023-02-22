@@ -1,0 +1,16 @@
+.project-owner {
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.25rem; /* 20px */
+}
+
+.project-repo {
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.25rem; /* 20px */
+}
+
+.project-desc {
+  line-height: 1.25rem; /* 20px */
+  font-size: 0.820rem;
+  font-weight: 400;
+  line-height: 1rem;
+}
