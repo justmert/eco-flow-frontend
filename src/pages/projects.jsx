@@ -26,7 +26,7 @@ export default function Projects(props) {
     props.info.sort(compare);
     props.info.forEach((docPair, index) => {
       repoCards.push(
-        <div className="space-x-4 py-4 md:min-w-[22rem]" key={docPair.id}>
+        <div className="space-x-4 py-1 min-w-[22rem]" key={docPair.id}>
           <ProjectCard key={docPair.id} info={docPair.data} />
         </div>
       );
@@ -55,17 +55,17 @@ export default function Projects(props) {
 
       <div className="projects">
         <div className="container mx-auto max-w-7xl px-4 pt-10">
-          <div className="mt-4 py-3 rounded-xl pb-2 pt-4 w-auto mb-2">
-            <h1 className="text-4xl mb-1 text-gray-400 font-medium">
+          <div className="mt-6 py-3 rounded-xl pb-2 pt-4 w-auto mb-2">
+            <h1 className="text-5xl tracking-tight mb-1 text-gray-400 font-extrabold">
               Projects
             </h1>
-            <h2 className="text-gray-400 font-medium">
+            <h2 className="text-gray-400 font-medium  text-xl">
               All projects building on {process.env.REACT_APP_ECOSYSTEM}{" "}
               ecosystem.
             </h2>
           </div>
 
-          <div className="grid sm:grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 content-between grid-wrap">
+          <div className="mt-6 grid sm:grid-cols-1 gap-y-4 gap-x-4 md:grid-cols-2 lg:grid-cols-3 content-between grid-wrap">
             {projectList}
           </div>
         </div>
