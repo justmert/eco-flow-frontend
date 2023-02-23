@@ -59,10 +59,11 @@ export default function Search(props) {
       return algoliaClient.search(requests);
     },
   };
+  const indexName = process.env.REACT_APP_ALGOLIA_INDEX_NAME || "projects";
 
   return (
     <InstantSearch
-      indexName={process.env.REACT_APP_ALGOLIA_INDEX_NAME}
+      indexName={indexName}
       searchClient={searchClient}
     >
       <SearchBox

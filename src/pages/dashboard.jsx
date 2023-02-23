@@ -58,13 +58,13 @@ export default function Dashboard(props) {
               <div className="bg-tra overflow-hidden rounded-lg">
                 <div className="px-8 py-10">
                   <div className="flex flex-col text-center mx-auto justify-center  items-center">
-                    <h1 className="mb-6 text-5xl max-w-3xl  banner tracking-tight ">
+                    <h1 className="mb-6 text-5xl max-w-3xl  banner tracking-tight">
                       Explore the activities of{" "}
-                      <span className="underline">
+                      <span className="underline case">
                         {data.total_project_count}
                       </span>{" "}
                       projects building on{" "}
-                      <span className="rounded-full eco-bg ecosystem-box text-4xl border-b-2 font-bold inline-flex px-7 py-1.5 m-4">
+                      <span className="rounded-full eco-bg ecosystem-box text-4xl border-b-2 font-bold inline-block mx-4 px-7 py-4 uppercase">
                         {process.env.REACT_APP_ECOSYSTEM}{" "}
                       </span>
                       ecosystem.
@@ -100,14 +100,6 @@ export default function Dashboard(props) {
             </div>
 
             <div className="mx-auto">
-              {/* <div>
-                <section className="py-3">
-                  <div>
-                    <RepositoryInfo data={data.repository_info} />
-                  </div>
-                </section>
-              </div>
- */}
               <div>
                 <section className="py-3">
                   <ChartContainer
@@ -132,8 +124,8 @@ export default function Dashboard(props) {
                     <div className="flex flex-col p-6 bg-gray-500 rounded-xl top-cont-container">
                       <div className="flex flex-wrap mb-2 items-center justify-between -m-2 ">
                         <div className="w-auto p-2 pl-4">
-                          <h3 className="text-lg text-gray-400 font-medium">
-                          {`${process.env.REACT_APP_ECOSYSTEM} Ecosystem Top Contributors`}
+                          <h3 className="text-lg text-gray-400 font-medium capitalize">
+                            {`${process.env.REACT_APP_ECOSYSTEM} Ecosystem Top Contributors`}
                           </h3>
                         </div>
                       </div>
@@ -148,8 +140,8 @@ export default function Dashboard(props) {
                   <section className="py-3">
                     <div className="p-6 rounded-xl chart-container flex flex-col">
                       <div className="w-auto mb-3">
-                        <h3 className="text-lg pl-2 text-gray-400 font-medium">
-                        {`${process.env.REACT_APP_ECOSYSTEM} Ecosystem Issue Activity`}
+                        <h3 className="text-lg pl-2 text-gray-400 font-medium capitalize">
+                          {`${process.env.REACT_APP_ECOSYSTEM} Ecosystem Issue Activity`}
                         </h3>
                       </div>
                       <div>
@@ -171,7 +163,7 @@ export default function Dashboard(props) {
                   </section>
                 </div>
                 <div className="w-full md:w-1/3 px-3 mb-3 md:mb-0">
-                  <div className="py-3">
+                  <div className="py-3 capitalize">
                     <StarCount
                       chartHeader={`${process.env.REACT_APP_ECOSYSTEM} Ecosystem Star Count`}
                       data={data.total_star_count}

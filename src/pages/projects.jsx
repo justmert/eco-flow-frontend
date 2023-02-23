@@ -14,6 +14,8 @@ export default function Projects(props) {
     if (Object.keys(props.info).length === 0) {
       return;
     }
+    console.log(props.info)
+    console.log(props.info.map((docPair) => docPair.data))
 
     const repoCards = [];
     function compare(a, b) {
@@ -26,14 +28,14 @@ export default function Projects(props) {
     props.info.sort(compare);
     props.info.forEach((docPair, index) => {
       repoCards.push(
-        <div className="space-x-4 py-1 min-w-[22rem]" key={docPair.id}>
+        <div className="" key={docPair.id}>
           <ProjectCard key={docPair.id} info={docPair.data} />
         </div>
       );
     });
 
     setProjectList(repoCards);
-  }, [props.info]);
+  }, [props]);
 
   return (
     <div>
@@ -65,7 +67,7 @@ export default function Projects(props) {
             </h2>
           </div>
 
-          <div className="mt-6 grid sm:grid-cols-1 gap-y-4 gap-x-4 md:grid-cols-2 lg:grid-cols-3 content-between grid-wrap">
+          <div className="mt-6 grid grid-cols-1 gap-y-4 gap-x-4 md:grid-cols-2 lg:grid-cols-3 content-between grid-wrap">
             {projectList}
           </div>
         </div>

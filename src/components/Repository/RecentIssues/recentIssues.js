@@ -56,7 +56,8 @@ export default function RecentIssues(props) {
               <div className="flex items-center">
                 <img
                   className="h-12 w-12 mr-3 rounded-full"
-                  src={props.data[i].user.avatar_url}
+                  src={props.data[i].user ? props.data[i].user.avatar_url : null}
+                  
                   alt=""
                   style={{
                     minWidth: "48px",
@@ -71,7 +72,7 @@ export default function RecentIssues(props) {
                     {props.data[i].title}
                   </h5>
                   <span className="text-xs line-clamp-1 font-medium text-gray-400">
-                    {props.data[i].user.login} •{" "}
+                    {/* {props.data[i].user.login} •{" "} */}
                     {props.data[i].state.toUpperCase()} •{" "}
                     {props.data[i].comments} comments • Created at{" "}
                     {formatDate(props.data[i].created_at)}

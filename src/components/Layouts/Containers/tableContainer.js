@@ -25,7 +25,7 @@ export default function TableContainer(props) {
     <div className="flex flex-col p-6 bg-gray-500 rounded-xl table-container">
       <div className="flex flex-wrap mb-2 items-center justify-between -m-2 " >
         <div className="w-auto p-2 pl-4">
-          <h3 className="text-lg text-gray-400 font-medium">
+          <h3 className="text-lg text-gray-400 font-medium capitalize">
             {props.chartHeader}
           </h3>
         </div>

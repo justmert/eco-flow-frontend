@@ -15,7 +15,7 @@ export default function ProjectCard(props) {
           <div className="shadow-dashboard">
             <div className="flex flex-row justify-between items-center p-2 border-b border-coolGray-100">
               <div className="w-full lg:w-auto p-2">
-                <div className="flex flex-wrap items-center -m-3">
+                <div className="flex flex-row items-center -m-3">
                   <div className="w-auto p-2">
                     <img
                       src={props.info.owner.avatar_url}

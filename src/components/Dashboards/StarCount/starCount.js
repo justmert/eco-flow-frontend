@@ -25,7 +25,7 @@ export default function StarCount(props) {
           {props.data} STARS
         </p>
         <p className="flex w-full text-sm font-thin text-gray-400 italic text-center justify-center items-center mt-1">
-          click me!
+          {`click the star :)`}
         </p>
         
       </div>

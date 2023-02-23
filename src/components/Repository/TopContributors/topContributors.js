@@ -43,7 +43,7 @@ export default function TopContributors(props) {
               <div className="flex items-center">
                 <img
                   className="h-12 w-12 mr-3 rounded-full"
-                  src={props.data[i].avatar_url}
+                  src={props.data[i] ? props.data[i].avatar_url : null}
                   style={{
                     minWidth: "48px",
                     minHeight: "48px",
@@ -55,7 +55,7 @@ export default function TopContributors(props) {
                 />
                 <div>
                   <h5 className="text-sm line-clamp-1 text-gray-400 font-medium ">
-                    {props.data[i].login}
+                    {props.data[i] ? props.data[i].login : null}
                   </h5>
                   <span className="text-xs font-medium line-clamp-1 text-gray-400">
                     {props.data[i].contributions} commits

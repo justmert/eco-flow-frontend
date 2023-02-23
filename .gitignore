@@ -33,4 +33,5 @@ firestore-debug.log
 .firebaserc
 firebase_admin_sdk.json
 
-
+pushall.sh
+scripts/

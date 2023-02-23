@@ -20,7 +20,7 @@ export default function Footer() {
               Made with{" "}
               <HeartIcon fill="red" className="inline h-4 w-4"></HeartIcon> by
               {" Mert Köklü "}for{" "}
-              <strong>{process.env.REACT_APP_ECOSYSTEM}</strong> ecosystem
+              <strong className="capitalize">{process.env.REACT_APP_ECOSYSTEM}</strong> ecosystem
             </p>
           </div>
           <div className="w-auto">

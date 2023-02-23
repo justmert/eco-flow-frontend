@@ -54,7 +54,7 @@ export default function RecentCommits(props) {
               <div className="flex items-center">
                 <img
                   className="h-12 w-12 mr-3 rounded-full"
-                  src={props.data[i].author.avatar_url}
+                  src={props.data[i].author ? props.data[i].author.avatar_url : null}
                   alt=""
                   style={{
                     minWidth: "48px",
@@ -69,7 +69,7 @@ export default function RecentCommits(props) {
                     {props.data[i].commit.message}
                   </h5>
                   <span className="text-xs line-clamp-1 font-medium text-gray-400">
-                    {props.data[i].author.login} •{" "}
+                    {props.data[i].author ? props.data[i].author.login : null } •{" "}
                     {props.data[i].commit.comment_count} comments • Created at{" "}
                     {formatDate(props.data[i].commit.author.date)}
                   </span>
