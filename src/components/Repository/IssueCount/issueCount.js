@@ -6,9 +6,17 @@ import axios from "axios";
 import LoadingSpinner from "../../Layouts/Loading/loading";
 import NoData from "../../Layouts/NoData/noData";
 
+/**
+* Component for displaying a pie chart of issue counts. It is used to display the number of issues per type and for each series in the chart
+* 
+* @param props - props to pass to component
+* 
+* @return { ReactElement } React element for displaying issue count in the chart ( s ) or null if there was
+*/
 export default function IssueCount(props) {
   const [option, setOption] = useState(null);
   useEffect(() => {
+    // Set the chart options.
     if (props.data === undefined) {
       setOption(
         <div>
@@ -16,6 +24,7 @@ export default function IssueCount(props) {
         </div>
       );
       return;
+    // Set the chart options for the chart
     } else if (props.data === null) {
       setOption(
         <div>
@@ -33,6 +42,7 @@ export default function IssueCount(props) {
         left: "center",
       };
 
+      // Creates a series of issue count data.
       for (let i = 0; i < props.data.series.length; i++) {
         const addVal = {
           name: "Issue Count",

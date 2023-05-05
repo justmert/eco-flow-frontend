@@ -29,6 +29,13 @@ const Hit = ({ hit }) => (
   </div>
 );
 
+/**
+* Component for searching projects. Used to create a search component that is added to the component tree as a child of Reaction's React component
+* 
+* @param props - component properties to be added to the component tree
+* 
+* @return { ReactElement } component to add to the component tree as a child of Reaction's React
+*/
 export default function Search(props) {
   const algoliaClient = algoliasearch(
     process.env.REACT_APP_ALGOLIA_APPLICATION_ID,
@@ -37,7 +44,15 @@ export default function Search(props) {
 
   const searchClient = {
     ...algoliaClient,
+    /**
+    * Search API. Performs a search against Algolia and returns results as an array of objects.
+    * 
+    * @param requests - Array of search requests to perform. Must be of the form [ { query : " search " params : {... } ] }
+    * 
+    * @return { Promise } Resolves with an array of results or rejects with an error message if there was an error
+    */
     search(requests) {
+      // Returns a promise that resolves when all requests have been processed.
       if (
         requests.every(({ params }) => !params.query || params.query.length < 2)
       ) {

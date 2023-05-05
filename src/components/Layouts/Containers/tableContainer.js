@@ -7,15 +7,26 @@ import RecentCommits from "../../Repository/RecentCommits/recentCommits";
 import RecentIssues from "../../Repository/RecentIssues/recentIssues";
 import RepositoryInfo from "../../Repository/RepositoryInfo/repositoryInfo";
 
+/**
+* A container for the table. It is used to display the data and a chart in the right place
+* 
+* @param props - The props to be passed to the chart
+* 
+* @return { JSX. Element } The container for the table in the right place ( after the chart is rendered
+*/
 export default function TableContainer(props) {
   const [chart, setChart] = useState(null);
   useEffect(() => {
+    // Set chart data to the chart
     if (props.chartType === "top_contributors") {
       setChart(<TopContributors data={props.data} />);
+    // Set the chart to the chart
     } else if (props.chartType === "recent_commits") {
       setChart(<RecentCommits data={props.data} />);
+    // Set chart data for the chart
     } else if (props.chartType === "recent_issues") {
       setChart(<RecentIssues data={props.data} />);
+    // Set chart data to the chart
     } else if (props.chartType === "repository_info") {
       setChart(<RepositoryInfo data={props.data} />);
     }

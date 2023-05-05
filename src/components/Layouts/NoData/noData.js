@@ -1,5 +1,11 @@
 import "./noData.css";
 
+/**
+* No Data Element Displays a message if there are no data to display. This is used to indicate that the user didn't have a data set for some reason.
+* 
+* 
+* @return { JSX. Element } The HTML for the No Data Element. It contains a div with class " flex " and the data
+*/
 export default function NoData() {
   return (
     <div className="flex flex-col justify-center items-center pt-32">

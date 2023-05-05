@@ -1,3 +1,9 @@
+/**
+* A spinner to show loading status. It's used in the loading bar and the progress bar.
+* 
+* 
+* @return { JSX } The spinner to show loading status. Note that this spinner won't be visible
+*/
 export default function LoadingSpinner() {
   return (
     <div className="flex flex-grow justify-center items-center pt-32">

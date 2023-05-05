@@ -6,9 +6,17 @@ import axios from "axios";
 import LoadingSpinner from "../../Layouts/Loading/loading";
 import NoData from "../../Layouts/NoData/noData";
 
+/**
+* Component for displaying pull request count. This component is responsible for populating the data and chart. You can use it to add or remove items from the chart by passing an object with data and / or series properties.
+* 
+* @param props - React props to pass to component. Must contain data and series properties.
+* 
+* @return { ReactElement } React element for displaying pull request count with series and / or chart properties. Note that data will be replaced with values from the chart
+*/
 export default function PullRequestCount(props) {
   const [option, setOption] = useState(null);
   useEffect(() => {
+    // This method is used to set the chart options.
     if (props.data === undefined) {
       setOption(
         <div>
@@ -16,6 +24,7 @@ export default function PullRequestCount(props) {
         </div>
       );
       return;
+    // Set the chart options for the pull request count
     } else if (props.data === null) {
       setOption(
         <div>
@@ -33,6 +42,7 @@ export default function PullRequestCount(props) {
         left: "center",
       };
 
+      // This method will add series to the series
       for (let i = 0; i < props.data.series.length; i++) {
         const addVal = {
           name: "Pull Request Count",

@@ -7,9 +7,17 @@ import * as echarts from "echarts/core";
 import LoadingSpinner from "../../Layouts/Loading/loading";
 import NoData from "../../Layouts/NoData/noData";
 
+/**
+* React component for commit history. Used to show / hides chart history in an interactive window. It is called by a user interactively and should not be used directly by end users.
+* 
+* @param props - props to pass to component. Must contain data series dataZoom etc.
+* 
+* @return React component for commit history in an interactive window. This component can be used to navigate to history in a web browser
+*/
 export default function CommitHistory(props) {
   const [option, setOption] = useState(null);
   useEffect(() => {
+    // Set the chart options.
     if (props.data === undefined) {
       setOption(
         <div>
@@ -17,6 +25,7 @@ export default function CommitHistory(props) {
         </div>
       );
       return;
+    // Set the chart data.
     } else if (props.data === null) {
       setOption(
         <div>
@@ -39,6 +48,7 @@ export default function CommitHistory(props) {
         trigger: "axis",
       };
 
+      // This method is used to create series of series
       for (let i = 0; i < props.data.series.length; i++) {
         props.data.series[i].showSymbol = false;
         props.data.series[i].smooth = true;

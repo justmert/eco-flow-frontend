@@ -9,6 +9,12 @@ import gitbubIcon2 from "../../../assets/github2.svg";
 import { useState } from "react";
 import { SliderButton } from "@typeform/embed-react";
 
+/**
+* Renders a Navbar to be used in navbars. It is the top level component of the navbar.
+* 
+* 
+* @return { JSX } The HTML to be rendered in the navbar. This must be wrapped in a div
+*/
 export default function Navbar() {
   return (
     <Disclosure as="nav" className="navbar-item ">

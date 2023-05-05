@@ -6,6 +6,12 @@ import gitbubIcon2 from "../../../assets/github2.svg";
 import twitterIcon from "../../../assets/twitter.png";
 import "./footer.css";
 
+/**
+* Footer for the site. Used to display the footer in the flex - bar. It is a div with a flex - wrap and an item for each of the items that are displayed on the footer.
+* 
+* 
+* @return { JSX } The footer JSX content as a string for use in the template. The footer will be rendered inside a
+*/
 export default function Footer() {
   useEffect(() => {
     return () => {};

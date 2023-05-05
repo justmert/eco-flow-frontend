@@ -6,9 +6,17 @@ import axios from "axios";
 import LoadingSpinner from "../../Layouts/Loading/loading";
 import NoData from "../../Layouts/NoData/noData";
 
+/**
+* React component for Issue Activity. This component is used to display data to the user in a chart.
+* 
+* @param props - React props to be applied to the component.
+* 
+* @return { ReactElement } React element to display the chart on the screen or null if there is no data
+*/
 export default function IssueActivity(props) {
   const [option, setOption] = useState(null);
   useEffect(() => {
+    // Set the chart options.
     if (props.data === undefined) {
       setOption(
         <div>
@@ -16,6 +24,7 @@ export default function IssueActivity(props) {
         </div>
       );
       return;
+    // Set the chart option to tooltip
     } else if (props.data === null) {
       setOption(
         <div>

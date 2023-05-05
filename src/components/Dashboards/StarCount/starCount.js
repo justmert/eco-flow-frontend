@@ -4,9 +4,17 @@ import { useEffect } from "react";
 import "./starCount.css";
 import "./star";
 import renderStar from "./star";
+/**
+* React component for StarCount chart. Used to display stars in a bar chart. It is a flexible component with CSS styling and the ability to pass data to the star renderer.
+* 
+* @param props - Properties to provide to the component. Should contain chartHeader and data.
+* 
+* @return { JSX. Element } React element for StarCount chart with data rendered to it via renderStar
+*/
 export default function StarCount(props) {
   //   const [chart, setChart] = useState(null);
   useEffect(() => {
+    // Render star if data is not set
     if (props.data !== undefined) {
       renderStar();
     }

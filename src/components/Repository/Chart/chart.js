@@ -2,6 +2,20 @@ import { useState } from "react";
 import React from "react";
 import ReactECharts from "echarts-for-react"; // or var ReactECharts = require('echarts-for-react');
 
+/**
+* A component for displaying a chart. It is used to render an HTML page with a series of data and other visual elements that can be added to the page.
+* 
+* @param props - Properties to provide to the chart. Should include : loading : The chart loading icon. option : An object with options for the chart.
+* 
+* @return { ReactElement } The rendered React element for the chart to be added to the page's DOM
+*/
+/**
+* A component for displaying a chart. It is used to render an HTML page with a series of data and other visual elements that can be added to the page.
+* 
+* @param props - Properties to provide to the chart. Should include : loading : The chart loading icon. option : An object with options for the chart.
+* 
+* @return { ReactElement } The rendered React element for the chart to be added to the page's DOM
+*/
 export default function Chart(props) {
   return (
     <ReactECharts

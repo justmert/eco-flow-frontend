@@ -4,6 +4,13 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import StarSvg from '../../../assets/star.svg'
 import './projectCard.css'
+/**
+* Renders a project card. It is used to display the details of a project on the dashboard. This view should be placed in the project's home page as well as in the project's list of projects.
+* 
+* @param props - Project properties to render the card with. Must contain info. owner and info. name
+* 
+* @return { JSX } HTML for the
+*/
 export default function ProjectCard(props) {
   return (
     <div>
