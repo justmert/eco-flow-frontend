@@ -12,12 +12,32 @@ import './projectCard.css'
 * @return { JSX } HTML for the
 */
 export default function ProjectCard(props) {
+const [itemCategory, setitemCategory] = useState([])
+
+useEffect(() => {
+  if (Object.keys(props.info).length === 0) {
+    return;
+  }
+  let categories = []
+  props.category.forEach(element => {
+    categories.push(
+      <span
+      // style={{ backgroundColor: "rgba(244, 132, 132, 0.4)" }}
+      className="inline-flex info-badge text-center rounded-full py-1 px-2 text-xs font-medium text-gray-400"
+    >
+      {element}
+    </span>
+    )
+  });
+  setitemCategory(categories)
+}, [props, itemCategory]);
+
   return (
     <div>
-      <div className="w-full p-3 rounded-xl project-item min-h-[11rem]">
+      <div className="w-full p-3 rounded-xl project-item min-h-[13rem]">
         <Link
           to={`/projects/${props.info.owner.login}/${props.info.name}`}
-          state={{ info: props.info }}
+          state={{ info: props.info, category: props.category }}
         >
           <div className="shadow-dashboard">
             <div className="flex flex-row justify-between items-center p-2 border-b border-coolGray-100">
@@ -70,6 +90,14 @@ export default function ProjectCard(props) {
                   </p>
                 </div>
               </div>
+              <div className="w-full pt-2 mt-2">
+                <div className="text-center">
+                  <p className=" text-xs text-coolGray-900 space-x-2">
+                  {itemCategory}
+                  </p>
+                </div>
+              </div>
+
             </div>
           </div>
         </Link>

@@ -15,7 +15,7 @@ export default function Projects(props) {
       return;
     }
     console.log(props.info)
-    console.log(props.info.map((docPair) => docPair.data))
+    // console.log(props.info.map((docPair) => docPair.data))
 
     const repoCards = [];
     function compare(a, b) {
@@ -29,7 +29,7 @@ export default function Projects(props) {
     props.info.forEach((docPair, index) => {
       repoCards.push(
         <div className="" key={docPair.id}>
-          <ProjectCard key={docPair.id} info={docPair.data} />
+          <ProjectCard key={docPair.id} info={docPair.data} category={docPair.category}/>
         </div>
       );
     });

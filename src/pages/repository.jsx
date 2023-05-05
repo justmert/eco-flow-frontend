@@ -15,7 +15,7 @@ export default function Repository(props) {
   const { owner, repo } = useParams();
   const location = useLocation();
   if (location.state !== null) {
-    var { info } = location.state;
+    var { info, category } = location.state;
   }
 
   useEffect(() => {
@@ -30,11 +30,11 @@ export default function Repository(props) {
           if (info === undefined) {
             const selectedInfo = props.info.filter(
               (item) => item.id === `${owner}-${repo}`
-            )[0].data;
-            setData({ ...docSnap.data(), repository_info: selectedInfo });
+            )[0];
+            setData({ ...docSnap.data(), repository_info: selectedInfo.data, category: selectedInfo.category});
 
           } else {
-            setData({ ...docSnap.data(), repository_info: info });
+            setData({ ...docSnap.data(), repository_info: info, category: category });
             
           }
         } else {
@@ -44,7 +44,7 @@ export default function Repository(props) {
       .catch((error) => {
         console.log("Error getting document:", error);
       });
-  }, [owner, repo, info, props.db, props.info]);
+  }, [owner, repo, info, props.db, props.info, props.category, category]);
 
   return (
     <div>
@@ -66,7 +66,7 @@ export default function Repository(props) {
           <div>
             <section className="py-3">
               <div>
-                <RepositoryInfo data={data.repository_info} />
+                <RepositoryInfo data={data.repository_info} category={data.category}/>
               </div>
             </section>
           </div>

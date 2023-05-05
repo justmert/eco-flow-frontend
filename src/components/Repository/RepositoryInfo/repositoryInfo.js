@@ -22,6 +22,7 @@ export default function RepositoryInfo(props) {
   }
 
   useEffect(() => {
+    console.log(props)
     if (props.data === undefined) {
       setOption(
         <div>
@@ -42,7 +43,19 @@ export default function RepositoryInfo(props) {
         { name: "Watchers", stat: props.data.watchers_count },
         { name: "Forks", stat: props.data.forks_count },
       ];
-
+      let categories = []
+      props.category.forEach(element => {
+        categories.push(
+          <span
+          // style={{ backgroundColor: "rgba(244, 132, 132, 0.4)" }}
+          className="inline-flex border-pink-500 border-2 text-center rounded-full py-1 px-2 text-xs font-medium text-gray-400 bg-pink-200/40"
+        >
+          {element}
+        </span>
+        )
+      });
+      // setitemCategory(categories)
+    
       setOption(
         <div>
           <div className="mx-auto p-6 rounded-xl awesome-info">
@@ -80,6 +93,11 @@ export default function RepositoryInfo(props) {
                 </div>
               </div>
             </div>
+            <div className="mt-6 flex md:flex-row flex-col space-x-0 md:space-x-4 space-y-4 md:space-y-0 mx-auto items-center justify-center place-content-center md:items-start md:justify-start md:place-content-start">
+
+            {categories}
+            </div>
+
             <div className="mt-6 flex md:flex-row flex-col space-x-0 md:space-x-4 space-y-4 md:space-y-0 mx-auto items-center justify-center place-content-center md:items-start md:justify-start md:place-content-start">
               {props.data.license && (
                 <span
@@ -133,7 +151,7 @@ export default function RepositoryInfo(props) {
         </div>
       );
     }
-  }, [props.data]);
+  }, [props]);
 
   return (<div>{option}</div>);
 }

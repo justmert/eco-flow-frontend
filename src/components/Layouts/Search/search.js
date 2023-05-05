@@ -8,7 +8,7 @@ const Hit = ({ hit }) => (
   <div className="w-full cursor-pointer">
   <Link
     to={`/projects/${hit.info.owner.login}/${hit.info.name}`}
-    state={{ info: hit.info }}
+    state={{ info: hit.info, category: hit.category }}
   >
     <div className="flex items-center rounded-lg  p-2 hit-item  ">
       <img

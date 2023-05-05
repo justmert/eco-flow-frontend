@@ -28,7 +28,7 @@ export default function TableContainer(props) {
       setChart(<RecentIssues data={props.data} />);
     // Set chart data to the chart
     } else if (props.chartType === "repository_info") {
-      setChart(<RepositoryInfo data={props.data} />);
+      setChart(<RepositoryInfo data={props.data}  category={props.category}/>);
     }
   }, [props]);
 
