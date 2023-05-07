@@ -19,6 +19,7 @@ useEffect(() => {
     return;
   }
   let categories = []
+  if(props.category){
   props.category.forEach(element => {
     categories.push(
       <span
@@ -30,6 +31,7 @@ useEffect(() => {
     )
   });
   setitemCategory(categories)
+}
 }, [props, itemCategory]);
 
   return (

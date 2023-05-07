@@ -35,3 +35,5 @@ firebase_admin_sdk.json
 
 pushall.sh
 scripts/
+.hypothesis/
+.gitignore

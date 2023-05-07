@@ -44,6 +44,7 @@ export default function RepositoryInfo(props) {
         { name: "Forks", stat: props.data.forks_count },
       ];
       let categories = []
+      if (props.category) {
       props.category.forEach(element => {
         categories.push(
           <span
@@ -54,6 +55,7 @@ export default function RepositoryInfo(props) {
         </span>
         )
       });
+    }
       // setitemCategory(categories)
     
       setOption(
