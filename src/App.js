@@ -44,7 +44,6 @@ function App() {
           allData.push({
             id: doc.id,
             data: doc.data().info,
-            category: doc.data().category
           });
         });
         setAllProjectInfo(allData);

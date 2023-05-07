@@ -17,6 +17,7 @@ import { SliderButton } from "@typeform/embed-react";
 */
 export default function Navbar() {
   return (
+    
     <Disclosure as="nav" className="navbar-item ">
       {({ open }) => (
         <>

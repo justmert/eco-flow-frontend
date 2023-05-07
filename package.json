@@ -17,6 +17,7 @@
     "instantsearch.css": "^8.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-ga": "^3.3.1",
     "react-instantsearch-dom": "^6.39.0",
     "react-instantsearch-hooks-web": "^6.39.2",
     "react-router-dom": "^6.8.0",
