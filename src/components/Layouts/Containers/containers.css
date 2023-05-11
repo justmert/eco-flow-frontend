@@ -1,22 +1,21 @@
 .chart-container {
-    background-color: rgb(238 238 238 / 50%);
-    border-radius: 1.2rem;
-    box-shadow: 0 0.2rem 1.6rem rgb(34 34 34 / 15%);
-    padding: 1rem 1;
-    min-height: 395.1px;
-
+  background-color: rgb(238 238 238 / 50%);
+  border-radius: 1.2rem;
+  box-shadow: 0 0.2rem 1.6rem rgb(34 34 34 / 15%);
+  padding: 1rem 1;
+  min-height: 395.1px;
 }
 
 .table-container {
-    min-height: 471.1px;
-    background-color: rgb(238 238 238 / 50%);
-    border-radius: 1.2rem;
-    box-shadow: 0 0.2rem 1.6rem rgb(34 34 34 / 15%);
+  min-height: 471.1px;
+  background-color: rgb(238 238 238 / 50%);
+  border-radius: 1.2rem;
+  box-shadow: 0 0.2rem 1.6rem rgb(34 34 34 / 15%);
 }
 
-.top-cont-container{
-    min-height: 395.1px;
-    background-color: rgb(238 238 238 / 50%);
-    border-radius: 1.2rem;
-    box-shadow: 0 0.2rem 1.6rem rgb(34 34 34 / 15%);
+.top-cont-container {
+  min-height: 395.1px;
+  background-color: rgb(238 238 238 / 50%);
+  border-radius: 1.2rem;
+  box-shadow: 0 0.2rem 1.6rem rgb(34 34 34 / 15%);
 }

@@ -1,25 +1,23 @@
-
-
 .awesome-stats {
-    /* background-color: red; */
-    /* border: 1px solid black; */
-    /* background-color: rgb(238 238 238 / 50%); */
-    background-color: rgb(238 238 238 / 50%);
+  /* background-color: red; */
+  /* border: 1px solid black; */
+  /* background-color: rgb(238 238 238 / 50%); */
+  background-color: rgb(238 238 238 / 50%);
 
-    border-radius: 1.2rem;
-    box-shadow: 0 0.2rem 1.6rem rgb(34 34 34 / 15%);
-  }
-  
-  .awesome-info {
-    background-color: rgb(238 238 238 / 50%);
-    border-radius: 1.2rem;
-    box-shadow: 0 0.2rem 1.6rem rgb(34 34 34 / 15%);
+  border-radius: 1.2rem;
+  box-shadow: 0 0.2rem 1.6rem rgb(34 34 34 / 15%);
 }
 
-.info-badge{
-    /* background-color: rgb(238 238 238 / 75%); */
-    background-color: transparent;
-    border-radius: 1.2rem;
-    /* box-shadow: 0 0.2rem 1.6rem rgb(34 34 34 / 15%); */
-    border: 0.15rem solid rgb(128 128 128 / 75%);
+.awesome-info {
+  background-color: rgb(238 238 238 / 50%);
+  border-radius: 1.2rem;
+  box-shadow: 0 0.2rem 1.6rem rgb(34 34 34 / 15%);
+}
+
+.info-badge {
+  /* background-color: rgb(238 238 238 / 75%); */
+  background-color: transparent;
+  border-radius: 1.2rem;
+  /* box-shadow: 0 0.2rem 1.6rem rgb(34 34 34 / 15%); */
+  border: 0.15rem solid rgb(128 128 128 / 75%);
 }

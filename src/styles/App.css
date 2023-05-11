@@ -56,7 +56,7 @@
 .page-bg:after,
 .page-bg:before {
   border-radius: 10%;
-  content: "";
+  content: '';
   display: block;
   filter: blur(8rem);
   height: 75vh;

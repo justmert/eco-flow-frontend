@@ -1,21 +1,21 @@
-import React from "react";
-import { useEffect, useState } from "react";
-import { HeartIcon } from "@heroicons/react/24/outline";
-import githubIcon from "../../../assets/github1.png";
-import gitbubIcon2 from "../../../assets/github2.svg";
-import twitterIcon from "../../../assets/twitter.png";
-import "./footer.css";
+import React from 'react'
+import { useEffect } from 'react'
+import { HeartIcon } from '@heroicons/react/24/outline'
+import githubIcon from '../../../assets/github1.png'
+// import gitbubIcon2 from '../../../assets/github2.svg'
+import twitterIcon from '../../../assets/twitter.png'
+import './footer.css'
 
 /**
-* Footer for the site. Used to display the footer in the flex - bar. It is a div with a flex - wrap and an item for each of the items that are displayed on the footer.
-* 
-* 
-* @return { JSX } The footer JSX content as a string for use in the template. The footer will be rendered inside a
-*/
+ * Footer for the site. Used to display the footer in the flex - bar. It is a div with a flex - wrap and an item for each of the items that are displayed on the footer.
+ *
+ *
+ * @return { JSX } The footer JSX content as a string for use in the template. The footer will be rendered inside a
+ */
 export default function Footer() {
   useEffect(() => {
-    return () => {};
-  }, []);
+    return () => {}
+  }, [])
 
   return (
     <div className="site-footer">
@@ -23,10 +23,13 @@ export default function Footer() {
         <div className="flex flex-col items-center justify-center px-6 max-w-md mx-10">
           <div className="w-auto">
             <p className="p-5 text-gray-600 items-center justify-center text-center hover:text-gray-700 font-medium">
-              Made with{" "}
+              Made with{' '}
               <HeartIcon fill="red" className="inline h-4 w-4"></HeartIcon> by
-              {" Mert Köklü "}for{" "}
-              <strong className="capitalize">{process.env.REACT_APP_ECOSYSTEM}</strong> ecosystem
+              {' Mert Köklü '}for{' '}
+              <strong className="capitalize">
+                {process.env.REACT_APP_ECOSYSTEM}
+              </strong>{' '}
+              ecosystem
             </p>
           </div>
           <div className="w-auto">
@@ -130,5 +133,5 @@ export default function Footer() {
         </div>
       </section>
     </div>
-  );
+  )
 }

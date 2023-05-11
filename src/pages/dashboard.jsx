@@ -1,38 +1,38 @@
-import { useEffect, useState } from "react";
-import React from "react";
-import { doc, getDoc, getDocs, collection } from "firebase/firestore";
-import "../styles/dashboard.css";
-import ProjectCard from "../components/Projects/ProjectCard/projectCard";
-import Navbar from "../components/Layouts/Navbar/navbar.js";
-import ChartContainer from "../components/Layouts/Containers/chartContainer";
-import TableContainer from "../components/Layouts/Containers/tableContainer";
-import StarCount from "../components/Dashboards/StarCount/starCount";
-import Footer from "../components/Layouts/Footer/footer";
-import { Link } from "react-router-dom";
-import TopContributors from "../components/Repository/TopContributors/topContributors";
-import DashboardIssueActivity from "../components/Dashboards/IssueActivity/issueActivity";
+import { useEffect, useState } from 'react'
+import React from 'react'
+import { doc, getDoc } from 'firebase/firestore'
+import '../styles/dashboard.css'
+// import ProjectCard from '../components/Projects/ProjectCard/projectCard'
+import Navbar from '../components/Layouts/Navbar/navbar.js'
+import ChartContainer from '../components/Layouts/Containers/chartContainer'
+import TableContainer from '../components/Layouts/Containers/tableContainer'
+import StarCount from '../components/Dashboards/StarCount/starCount'
+import Footer from '../components/Layouts/Footer/footer'
+import { Link } from 'react-router-dom'
+import TopContributors from '../components/Repository/TopContributors/topContributors'
+import DashboardIssueActivity from '../components/Dashboards/IssueActivity/issueActivity'
 
 export default function Dashboard(props) {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([])
 
   useEffect(() => {
     const docRef = doc(
       props.db,
       process.env.REACT_APP_FIREBASE_OVERALL_COLLECTION,
       `_overall`
-    );
+    )
     getDoc(docRef)
       .then((docSnap) => {
         if (docSnap.exists()) {
-          setData(docSnap.data());
+          setData(docSnap.data())
         } else {
-          console.log("No such document!");
+          console.log('No such document!')
         }
       })
       .catch((error) => {
-        console.log("Error getting document:", error);
-      });
-  }, [props.db]);
+        console.log('Error getting document:', error)
+      })
+  }, [props.db])
 
   return (
     <>
@@ -59,13 +59,13 @@ export default function Dashboard(props) {
                 <div className="px-8 py-10">
                   <div className="flex flex-col text-center mx-auto justify-center  items-center">
                     <h1 className="mb-6 text-5xl max-w-3xl  banner tracking-tight">
-                      Explore the activities of{" "}
+                      Explore the activities of{' '}
                       <span className="underline case">
                         {data.total_project_count}
-                      </span>{" "}
-                      projects building on{" "}
+                      </span>{' '}
+                      projects building on{' '}
                       <span className="rounded-full eco-bg ecosystem-box text-4xl border-b-2 font-bold inline-block mx-4 px-7 py-4 uppercase">
-                        {process.env.REACT_APP_ECOSYSTEM}{" "}
+                        {process.env.REACT_APP_ECOSYSTEM}{' '}
                       </span>
                       ecosystem.
                     </h1>
@@ -211,5 +211,5 @@ export default function Dashboard(props) {
         </div>
       </div>
     </>
-  );
+  )
 }

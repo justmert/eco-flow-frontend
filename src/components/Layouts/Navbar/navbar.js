@@ -1,23 +1,22 @@
-import Search from "../Search/search";
-import "./navbar.css";
-import { Link } from "react-router-dom";
-import { Disclosure } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { useLocation } from "react-router-dom";
-import { NavLink } from "react-router-dom"; // import the NavLink component
-import gitbubIcon2 from "../../../assets/github2.svg";
-import { useState } from "react";
-import { SliderButton } from "@typeform/embed-react";
+import Search from '../Search/search'
+import './navbar.css'
+import { Link } from 'react-router-dom'
+import { Disclosure } from '@headlessui/react'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+// import { useLocation } from 'react-router-dom'
+import { NavLink } from 'react-router-dom' // import the NavLink component
+import gitbubIcon2 from '../../../assets/github2.svg'
+// import { useState } from 'react'
+import { SliderButton } from '@typeform/embed-react'
 
 /**
-* Renders a Navbar to be used in navbars. It is the top level component of the navbar.
-* 
-* 
-* @return { JSX } The HTML to be rendered in the navbar. This must be wrapped in a div
-*/
+ * Renders a Navbar to be used in navbars. It is the top level component of the navbar.
+ *
+ *
+ * @return { JSX } The HTML to be rendered in the navbar. This must be wrapped in a div
+ */
 export default function Navbar() {
   return (
-    
     <Disclosure as="nav" className="navbar-item ">
       {({ open }) => (
         <>
@@ -30,7 +29,7 @@ export default function Navbar() {
                       <img
                         className="relative h-12 shrink-0 bg-transparent inline-block object-left"
                         src={require(`../../../assets/favicon.png`)}
-                        style={{ backgroundColor: "transparent" }}
+                        style={{ backgroundColor: 'transparent' }}
                         alt="logo"
                       />
                     </div>
@@ -38,7 +37,7 @@ export default function Navbar() {
                       <img
                         width={40}
                         className=" h-14 shrink-0 bg-transparent min-w-full w-full md:inline-block hidden"
-                        style={{ backgroundColor: "transparent" }}
+                        style={{ backgroundColor: 'transparent' }}
                         src={require(`../../../assets/icons/${process.env.REACT_APP_LOGO}.png`)}
                         alt="logo"
                       />
@@ -112,29 +111,28 @@ export default function Navbar() {
                     </svg>
                     <span className="pl-2 mr-1">Submit</span>
                   </SliderButton>
-                ):
-                
-              (                  <button
-                id={process.env.REACT_APP_TYPEFORM_ID}
-                className="hidden lg:flex rounded-md px-3 mr-2 justify-center content-center items-center place-content-center navbar-hover text-sm font-medium text-gray-900"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-4 h-4"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M12 4.5v15m7.5-7.5h-15"
-                  />
-                </svg>
-                <span className="pl-2 mr-1">Submit</span>
-              </button>
-)}
+                ) : (
+                  <button
+                    id={process.env.REACT_APP_TYPEFORM_ID}
+                    className="hidden lg:flex rounded-md px-3 mr-2 justify-center content-center items-center place-content-center navbar-hover text-sm font-medium text-gray-900"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="currentColor"
+                      className="w-4 h-4"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M12 4.5v15m7.5-7.5h-15"
+                      />
+                    </svg>
+                    <span className="pl-2 mr-1">Submit</span>
+                  </button>
+                )}
 
                 <div className="w-full max-w-lg">
                   <Search />
@@ -175,5 +173,5 @@ export default function Navbar() {
         </>
       )}
     </Disclosure>
-  );
+  )
 }

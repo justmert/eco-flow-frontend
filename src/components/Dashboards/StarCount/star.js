@@ -1,6 +1,6 @@
 export default function renderStar() {
-  const _SVG = document.getElementById("shape-container"),
-    _SHAPE = document.getElementById("shape"),
+  const _SVG = document.getElementById('shape-container'),
+    _SHAPE = document.getElementById('shape'),
     D = 175 /* viewBox size */,
     O = {} /* data object */,
     /* number of cubic curves/ polygon vertices */
@@ -8,24 +8,24 @@ export default function renderStar() {
     NF = 50 /* total number of frames for transition */,
     TFN = {
       /* timing functions */
-      "ease-out": function (k) {
-        return 1 - Math.pow(1 - k, 1.675);
+      'ease-out': function (k) {
+        return 1 - Math.pow(1 - k, 1.675)
       },
-      "ease-in-out": function (k) {
-        return 0.5 * (Math.sin((k - 0.5) * Math.PI) + 1);
+      'ease-in-out': function (k) {
+        return 0.5 * (Math.sin((k - 0.5) * Math.PI) + 1)
       },
-      "bounce-ini-fin": function (k, s = -0.65 * Math.PI, e = -s) {
+      'bounce-ini-fin': function (k, s = -0.65 * Math.PI, e = -s) {
         return (
           (Math.sin(k * (e - s) + s) - Math.sin(s)) /
           (Math.sin(e) - Math.sin(s))
-        );
+        )
       },
-    };
+    }
 
   let dir = -1,
     rID = null,
     cf = 0,
-    m;
+    m
 
   function getStarPoints(f = 0.5) {
     const RCO = f * D /* outer (pentagram) circumradius*/,
@@ -35,7 +35,7 @@ export default function renderStar() {
       RCI = RI / Math.cos(0.5 * BAC) /* inner pentagon circumradius */,
       ND = 2 * P /* total number of distinct points we need to get */,
       BAD = (2 * Math.PI) / ND /* base angle for point distribution */,
-      PTS = []; /* array we fill with point coordinates */
+      PTS = [] /* array we fill with point coordinates */
 
     for (let i = 0; i < ND; i++) {
       let /* radius at end point (inner)/ control point (outer) */
@@ -43,14 +43,14 @@ export default function renderStar() {
         /* angle of radial segment from origin to current point */
         ca = i * BAD + 0.5 * Math.PI,
         x = Math.round(cr * Math.cos(ca)),
-        y = Math.round(cr * Math.sin(ca));
+        y = Math.round(cr * Math.sin(ca))
 
-      PTS.push([x, y]);
+      PTS.push([x, y])
       /* for even indices double it, control points coincide here */
-      if (!(i % 2)) PTS.push([x, y]);
+      if (!(i % 2)) PTS.push([x, y])
     }
 
-    return PTS;
+    return PTS
   }
 
   function getHeartPoints(f = 0.25) {
@@ -82,7 +82,7 @@ export default function renderStar() {
       YAE = Math.round(CC * YA + C * YE),
       /* coords of ctrl points on BE segs */
       XBE = Math.round(CC * XB + C * XE),
-      YBE = Math.round(CC * YB + C * YE);
+      YBE = Math.round(CC * YB + C * YE)
 
     return [
       [XC, YC],
@@ -100,53 +100,53 @@ export default function renderStar() {
       [XAE, YAE],
       [XBE, YBE],
       [XB, YB],
-    ].map(([x, y]) => [x, y - 0.09 * R]);
+    ].map(([x, y]) => [x, y - 0.09 * R])
   }
 
   function fnStr(fname, farg) {
-    return `${fname}(${farg})`;
+    return `${fname}(${farg})`
   }
 
   function range(ini, fin) {
-    return typeof ini == "number"
+    return typeof ini == 'number'
       ? fin - ini
-      : ini.map((c, i) => range(ini[i], fin[i]));
+      : ini.map((c, i) => range(ini[i], fin[i]))
   }
 
   function int(ini, rng, tfn, k, cnt) {
-    return typeof ini == "number"
+    return typeof ini == 'number'
       ? Math.round(ini + cnt * (m + dir * tfn(m + dir * k)) * rng)
-      : ini.map((c, i) => int(ini[i], rng[i], tfn, k, cnt));
+      : ini.map((c, i) => int(ini[i], rng[i], tfn, k, cnt))
   }
 
   function stopAni() {
-    cancelAnimationFrame(rID);
-    rID = null;
+    cancelAnimationFrame(rID)
+    rID = null
   }
 
   function update() {
-    cf += dir;
+    cf += dir
 
-    let k = cf / NF;
+    let k = cf / NF
 
     for (let p in O) {
-      let c = O[p];
+      let c = O[p]
 
       _SHAPE.setAttribute(
         ...[p, c.afn(int(c.ini, c.rng, TFN[c.tfn], k, c.cnt ? dir : 1))]
-      );
+      )
     }
 
     if (!(cf % NF)) {
-      stopAni();
-      return;
+      stopAni()
+      return
     }
 
-    rID = requestAnimationFrame(update);
+    rID = requestAnimationFrame(update)
   }
 
   const initStar = () => {
-    _SVG.setAttribute("viewBox", [-0.5 * D, -0.5 * D, D, D].join(" "));
+    _SVG.setAttribute('viewBox', [-0.5 * D, -0.5 * D, D, D].join(' '))
     // _SVG.setAttribute("viewBox", [25, 25, 25, 25].join(" "));
 
     O.d = {
@@ -154,44 +154,44 @@ export default function renderStar() {
       fin: getHeartPoints(),
       afn: function (pts) {
         return pts.reduce((a, c, i) => {
-          return a + (i % 3 ? " " : "C") + c;
-        }, `M${pts[pts.length - 1]}`);
+          return a + (i % 3 ? ' ' : 'C') + c
+        }, `M${pts[pts.length - 1]}`)
       },
-      tfn: "ease-in-out",
-    };
+      tfn: 'ease-in-out',
+    }
 
     O.transform = {
       ini: -180,
       fin: 0,
-      afn: (ang) => fnStr("rotate", ang),
-      tfn: "bounce-ini-fin",
+      afn: (ang) => fnStr('rotate', ang),
+      tfn: 'bounce-ini-fin',
       cnt: 1,
-    };
+    }
 
     O.fill = {
       ini: [255, 215, 0],
       fin: [220, 20, 60],
-      afn: (rgb) => fnStr("rgb", rgb),
-      tfn: "ease-out",
-    };
+      afn: (rgb) => fnStr('rgb', rgb),
+      tfn: 'ease-out',
+    }
 
     for (let p in O) {
-      O[p].rng = range(O[p].ini, O[p].fin);
-      _SHAPE.setAttribute(p, O[p].afn(O[p].ini));
+      O[p].rng = range(O[p].ini, O[p].fin)
+      _SHAPE.setAttribute(p, O[p].afn(O[p].ini))
     }
 
     _SHAPE.addEventListener(
-      "click",
-      (e) => {
-        if (rID) stopAni();
-        dir *= -1;
-        m = 0.5 * (1 - dir);
-        update();
+      'click',
+      () => {
+        if (rID) stopAni()
+        dir *= -1
+        m = 0.5 * (1 - dir)
+        update()
       },
       false
-    );
-  };
+    )
+  }
 
-  initStar();
-  return <div></div>;
+  initStar()
+  return <div></div>
 }

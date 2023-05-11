@@ -1,59 +1,88 @@
-.banner{
-    color: #2f2f2f;
-    /* line-height: 2.8rem; */
-    line-height: 1.6;
+.banner {
+  color: #2f2f2f;
+  /* line-height: 2.8rem; */
+  line-height: 1.6;
 
-    font-weight: 900;
+  font-weight: 900;
 }
 
-.ecosystem-box{
-    /* background-color: #e4e4e4 !important; */
-    /* background-color: rgb(201 201 201 / 15% ) !important; */
-    /* border-color: #262626; */
-    border: 2px solid #2e2e2e !important;
-    /* box-shadow: #737373 0px 4px 4px 2px !important; */
-    color: #262626 !important;
+.ecosystem-box {
+  /* background-color: #e4e4e4 !important; */
+  /* background-color: rgb(201 201 201 / 15% ) !important; */
+  /* border-color: #262626; */
+  border: 2px solid #2e2e2e !important;
+  /* box-shadow: #737373 0px 4px 4px 2px !important; */
+  color: #262626 !important;
 }
 
-.see-projects{
-    background-color: rgb(201 201 201 / 0%) !important;
-    color: #262626 !important;
+.see-projects {
+  background-color: rgb(201 201 201 / 0%) !important;
+  color: #262626 !important;
 }
 
-.see-projects:hover{
-    background-color: rgba(93, 136, 219, 0.2) !important;
-    color: #262626 !important;
-    transition: 0.5s;
+.see-projects:hover {
+  background-color: rgba(93, 136, 219, 0.2) !important;
+  color: #262626 !important;
+  transition: 0.5s;
 }
-
 
 .eco-bg {
-    background: linear-gradient(270deg, #c1c6ff8c, #ffbdbd81, #bde9ff7c, #e3bdffa4);
-    background-size: 800% 800%;
+  background: linear-gradient(
+    270deg,
+    #c1c6ff8c,
+    #ffbdbd81,
+    #bde9ff7c,
+    #e3bdffa4
+  );
+  background-size: 800% 800%;
 
-    -webkit-animation: ecosystem-gradient 5s ease infinite;
-    -moz-animation: ecosystem-gradient 5s ease infinite;
-    -o-animation: ecosystem-gradient 5s ease infinite;
-    animation: ecosystem-gradient 5s ease infinite;
+  -webkit-animation: ecosystem-gradient 5s ease infinite;
+  -moz-animation: ecosystem-gradient 5s ease infinite;
+  -o-animation: ecosystem-gradient 5s ease infinite;
+  animation: ecosystem-gradient 5s ease infinite;
 }
 
 @-webkit-keyframes ecosystem-gradient {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 @-moz-keyframes ecosystem-gradient {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 @-o-keyframes ecosystem-gradient {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 @keyframes ecosystem-gradient {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }

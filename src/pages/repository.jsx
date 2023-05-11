@@ -1,21 +1,21 @@
-import { useEffect, useState } from "react";
-import React from "react";
-import "../styles/repository.css";
-import RepositoryInfo from "../components/Repository/RepositoryInfo/repositoryInfo";
-import { doc, getDoc } from "firebase/firestore";
-import { useParams } from "react-router-dom";
-import { useLocation } from "react-router-dom";
-import Navbar from "../components/Layouts/Navbar/navbar.js";
-import ChartContainer from "../components/Layouts/Containers/chartContainer";
-import TableContainer from "../components/Layouts/Containers/tableContainer";
-import Footer from "../components/Layouts/Footer/footer";
-import TopContributors from "../components/Repository/TopContributors/topContributors";
+import { useEffect, useState } from 'react'
+import React from 'react'
+import '../styles/repository.css'
+import RepositoryInfo from '../components/Repository/RepositoryInfo/repositoryInfo'
+import { doc, getDoc } from 'firebase/firestore'
+import { useParams } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
+import Navbar from '../components/Layouts/Navbar/navbar.js'
+import ChartContainer from '../components/Layouts/Containers/chartContainer'
+import TableContainer from '../components/Layouts/Containers/tableContainer'
+import Footer from '../components/Layouts/Footer/footer'
+import TopContributors from '../components/Repository/TopContributors/topContributors'
 export default function Repository(props) {
-  const [data, setData] = useState({});
-  const { owner, repo } = useParams();
-  const location = useLocation();
+  const [data, setData] = useState({})
+  const { owner, repo } = useParams()
+  const location = useLocation()
   if (location.state !== null) {
-    var { info, category } = location.state;
+    var { info, category } = location.state
   }
 
   useEffect(() => {
@@ -23,28 +23,34 @@ export default function Repository(props) {
       props.db,
       process.env.REACT_APP_FIREBASE_DATA_COLLECTION,
       `${owner}-${repo}`
-    );
+    )
     getDoc(docRef)
       .then((docSnap) => {
         if (docSnap.exists()) {
           if (info === undefined) {
             const selectedInfo = props.info.filter(
               (item) => item.id === `${owner}-${repo}`
-            )[0];
-            setData({ ...docSnap.data(), repository_info: selectedInfo.data, category: selectedInfo.category});
-
+            )[0]
+            setData({
+              ...docSnap.data(),
+              repository_info: selectedInfo.data,
+              category: selectedInfo.category,
+            })
           } else {
-            setData({ ...docSnap.data(), repository_info: info, category: category });
-            
+            setData({
+              ...docSnap.data(),
+              repository_info: info,
+              category: category,
+            })
           }
         } else {
-          console.log("No such document!");
+          console.log('No such document!')
         }
       })
       .catch((error) => {
-        console.log("Error getting document:", error);
-      });
-  }, [owner, repo, info, props.db, props.info, props.category, category]);
+        console.log('Error getting document:', error)
+      })
+  }, [owner, repo, info, props.db, props.info, props.category, category])
 
   return (
     <div>
@@ -66,7 +72,10 @@ export default function Repository(props) {
           <div>
             <section className="py-3">
               <div>
-                <RepositoryInfo data={data.repository_info} category={data.category}/>
+                <RepositoryInfo
+                  data={data.repository_info}
+                  category={data.category}
+                />
               </div>
             </section>
           </div>
@@ -187,5 +196,5 @@ export default function Repository(props) {
       </div>
       <Footer />
     </div>
-  );
+  )
 }

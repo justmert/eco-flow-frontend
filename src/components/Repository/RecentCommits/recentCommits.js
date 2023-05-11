@@ -1,43 +1,43 @@
-import { useState } from "react";
-import React from "react";
-import Chart from "../Chart/chart";
-import { useEffect } from "react";
-import axios from "axios";
-import LoadingSpinner from "../../Layouts/Loading/loading";
-import NoData from "../../Layouts/NoData/noData";
+import { useState } from 'react'
+import React from 'react'
+// import Chart from '../Chart/chart'
+import { useEffect } from 'react'
+// import axios from 'axios'
+import LoadingSpinner from '../../Layouts/Loading/loading'
+import NoData from '../../Layouts/NoData/noData'
 
 export default function RecentCommits(props) {
-  const [option, setOption] = useState(null);
+  const [option, setOption] = useState(null)
 
   function formatDate(dateString) {
-    const date = new Date(dateString);
+    const date = new Date(dateString)
     const options = {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-    };
-    const humanReadableDate = date.toLocaleDateString("en-US", options);
-    return humanReadableDate;
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+    }
+    const humanReadableDate = date.toLocaleDateString('en-US', options)
+    return humanReadableDate
   }
   useEffect(() => {
     if (props.data === undefined) {
       setOption(
         <div>
-          <LoadingSpinner />{" "}
+          <LoadingSpinner />{' '}
         </div>
-      );
-      return;
+      )
+      return
     } else if (props.data === null) {
       setOption(
         <div>
-          <NoData />{" "}
+          <NoData />{' '}
         </div>
-      );
-      return;
+      )
+      return
     } else {
-      const editedData = [];
+      const editedData = []
       for (let i = 0; i < props.data.length; i++) {
         editedData.push(
           <a
@@ -54,14 +54,18 @@ export default function RecentCommits(props) {
               <div className="flex items-center">
                 <img
                   className="h-12 w-12 mr-3 rounded-full"
-                  src={props.data[i].author ? props.data[i].author.avatar_url : null}
+                  src={
+                    props.data[i].author
+                      ? props.data[i].author.avatar_url
+                      : null
+                  }
                   alt=""
                   style={{
-                    minWidth: "48px",
-                    minHeight: "48px",
-                    maxWidth: "48px",
-                    maxHeight: "48px",
-                    marginRight: "20px",
+                    minWidth: '48px',
+                    minHeight: '48px',
+                    maxWidth: '48px',
+                    maxHeight: '48px',
+                    marginRight: '20px',
                   }}
                 />
                 <div>
@@ -69,8 +73,8 @@ export default function RecentCommits(props) {
                     {props.data[i].commit.message}
                   </h5>
                   <span className="text-xs line-clamp-1 font-medium text-gray-400">
-                    {props.data[i].author ? props.data[i].author.login : null } •{" "}
-                    {props.data[i].commit.comment_count} comments • Created at{" "}
+                    {props.data[i].author ? props.data[i].author.login : null} •{' '}
+                    {props.data[i].commit.comment_count} comments • Created at{' '}
                     {formatDate(props.data[i].commit.author.date)}
                   </span>
                 </div>
@@ -78,12 +82,12 @@ export default function RecentCommits(props) {
               <div></div>
             </div>
           </a>
-        );
+        )
       }
 
-      setOption(editedData);
+      setOption(editedData)
     }
-  }, [props.data]);
+  }, [props.data])
 
-  return <div>{option}</div>;
+  return <div>{option}</div>
 }

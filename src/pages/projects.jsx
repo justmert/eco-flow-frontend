@@ -1,41 +1,45 @@
-import { useEffect, useState } from "react";
-import React from "react";
-import { doc, getDoc, getDocs, collection } from "firebase/firestore";
-import "../styles/projects.css";
-import ProjectCard from "../components/Projects/ProjectCard/projectCard";
-import Navbar from "../components/Layouts/Navbar/navbar.js";
-import { useParams } from "react-router-dom";
-import { useLocation } from "react-router-dom";
-import Footer from "../components/Layouts/Footer/footer";
+import { useEffect, useState } from 'react'
+import React from 'react'
+// import { doc, getDoc, getDocs, collection } from 'firebase/firestore'
+import '../styles/projects.css'
+import ProjectCard from '../components/Projects/ProjectCard/projectCard'
+import Navbar from '../components/Layouts/Navbar/navbar.js'
+// import { useParams } from 'react-router-dom'
+// import { useLocation } from 'react-router-dom'
+import Footer from '../components/Layouts/Footer/footer'
 
 export default function Projects(props) {
-  const [projectList, setProjectList] = useState(null);
+  const [projectList, setProjectList] = useState(null)
   useEffect(() => {
     if (Object.keys(props.info).length === 0) {
-      return;
+      return
     }
     console.log(props.info)
     // console.log(props.info.map((docPair) => docPair.data))
 
-    const repoCards = [];
+    const repoCards = []
     function compare(a, b) {
       if (a.data.stargazers_count < b.data.stargazers_count) {
-        return 1;
+        return 1
       } else {
-        return -1;
+        return -1
       }
     }
-    props.info.sort(compare);
-    props.info.forEach((docPair, index) => {
+    props.info.sort(compare)
+    props.info.forEach((docPair) => {
       repoCards.push(
         <div className="" key={docPair.id}>
-          <ProjectCard key={docPair.id} info={docPair.data} category={docPair.category}/>
+          <ProjectCard
+            key={docPair.id}
+            info={docPair.data}
+            category={docPair.category}
+          />
         </div>
-      );
-    });
+      )
+    })
 
-    setProjectList(repoCards);
-  }, [props]);
+    setProjectList(repoCards)
+  }, [props])
 
   return (
     <div>
@@ -57,12 +61,12 @@ export default function Projects(props) {
           <div className="mt-6 py-3 rounded-xl pb-2 pt-4 w-auto mb-2">
             <h1
               className="text-5xl tracking-tight mb-1 font-extrabold"
-              style={{ color: "#2f2f2f" }}
+              style={{ color: '#2f2f2f' }}
             >
               Projects
             </h1>
             <h2 className="text-gray-400 font-medium  text-xl">
-              All projects building on {process.env.REACT_APP_ECOSYSTEM}{" "}
+              All projects building on {process.env.REACT_APP_ECOSYSTEM}{' '}
               ecosystem.
             </h2>
           </div>
@@ -76,5 +80,5 @@ export default function Projects(props) {
         <Footer />
       </div>
     </div>
-  );
+  )
 }

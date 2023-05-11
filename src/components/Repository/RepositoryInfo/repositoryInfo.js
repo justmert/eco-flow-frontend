@@ -1,24 +1,24 @@
-import { useState } from "react";
-import React from "react";
-import { useEffect } from "react";
-import axios from "axios";
-import "./repositoryInfo.css";
-import LoadingSpinner from "../../Layouts/Loading/loading";
-import NoData from "../../Layouts/NoData/noData";
+import { useState } from 'react'
+import React from 'react'
+import { useEffect } from 'react'
+// import axios from 'axios'
+import './repositoryInfo.css'
+import LoadingSpinner from '../../Layouts/Loading/loading'
+import NoData from '../../Layouts/NoData/noData'
 
 export default function RepositoryInfo(props) {
-  const [option, setOption] = useState(null);
+  const [option, setOption] = useState(null)
   function formatDate(dateString) {
-    const date = new Date(dateString);
+    const date = new Date(dateString)
     const options = {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-    };
-    const humanReadableDate = date.toLocaleDateString("en-US", options);
-    return humanReadableDate;
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+    }
+    const humanReadableDate = date.toLocaleDateString('en-US', options)
+    return humanReadableDate
   }
 
   useEffect(() => {
@@ -26,38 +26,38 @@ export default function RepositoryInfo(props) {
     if (props.data === undefined) {
       setOption(
         <div>
-          <LoadingSpinner />{" "}
+          <LoadingSpinner />{' '}
         </div>
-      );
-      return;
+      )
+      return
     } else if (props.data === null) {
       setOption(
         <div>
-          <NoData />{" "}
+          <NoData />{' '}
         </div>
-      );
-      return;
+      )
+      return
     } else {
       const stats = [
-        { name: "Stars", stat: props.data.stargazers_count },
-        { name: "Watchers", stat: props.data.watchers_count },
-        { name: "Forks", stat: props.data.forks_count },
-      ];
+        { name: 'Stars', stat: props.data.stargazers_count },
+        { name: 'Watchers', stat: props.data.watchers_count },
+        { name: 'Forks', stat: props.data.forks_count },
+      ]
       let categories = []
       if (props.category) {
-      props.category.forEach(element => {
-        categories.push(
-          <span
-          // style={{ backgroundColor: "rgba(244, 132, 132, 0.4)" }}
-          className="inline-flex border-pink-500 border-2 text-center rounded-full py-1 px-2 text-xs font-medium text-gray-400 bg-pink-200/40"
-        >
-          {element}
-        </span>
-        )
-      });
-    }
+        props.category.forEach((element) => {
+          categories.push(
+            <span
+              // style={{ backgroundColor: "rgba(244, 132, 132, 0.4)" }}
+              className="inline-flex border-pink-500 border-2 text-center rounded-full py-1 px-2 text-xs font-medium text-gray-400 bg-pink-200/40"
+            >
+              {element}
+            </span>
+          )
+        })
+      }
       // setitemCategory(categories)
-    
+
       setOption(
         <div>
           <div className="mx-auto p-6 rounded-xl awesome-info">
@@ -96,8 +96,7 @@ export default function RepositoryInfo(props) {
               </div>
             </div>
             <div className="mt-6 flex md:flex-row flex-col space-x-0 md:space-x-4 space-y-4 md:space-y-0 mx-auto items-center justify-center place-content-center md:items-start md:justify-start md:place-content-start">
-
-            {categories}
+              {categories}
             </div>
 
             <div className="mt-6 flex md:flex-row flex-col space-x-0 md:space-x-4 space-y-4 md:space-y-0 mx-auto items-center justify-center place-content-center md:items-start md:justify-start md:place-content-start">
@@ -151,11 +150,11 @@ export default function RepositoryInfo(props) {
             </div>
           </div>
         </div>
-      );
+      )
     }
-  }, [props]);
+  }, [props])
 
-  return (<div>{option}</div>);
+  return <div>{option}</div>
 }
 
 // export default function RepositoryInfo(props) {
