@@ -1,10 +1,12 @@
-# Flow App Configuration
+# Flow App Frontend
 
-## Firebase Set-up
+## Firebase Configuration
+
+> This codebase is written in aim to ready to configure for all blockchain ecosystems. Therefore, you can follow the steps below to set up the project for your own ecosystem. Just know that through the documentation, we will use the arbitrary variable `<ecosystem_name>` to refer to the blockchain ecosystem you are working on. For example, if you are working on Polkadot, you can use 'polka' as the ecosystem name. Just know that, this variable needs to be consistent throughout the documentation (also in the backend documentation).
 
 1. Create a new project in Firebase ('Add project' in <https://firebase.google.com/>)
-2. Create 'Cloud Firestore' database
-3. Update database rules as,
+2. Create 'Cloud Firestore' database.
+3. Update database rules as below,
 
 ```
 rules_version = '2';
@@ -20,50 +22,67 @@ service cloud.firestore {
 
 > Note: This is not a secure way to set up the database. This is just for testing purposes. Please refer to the [Firebase documentation](https://firebase.google.com/docs/firestore/security/get-started) for more information.
 
-1. Create collection named 'repositories-data' in the database. Under that collection, create '_names' document. Under that document, create 'repository_names' list. Add all the repositories you want to track as list item in '{owner: GITHUB_PROJECT_OWNER, repo: GITHUB_PROJECT_NAME}' format.
-2. Create collection named 'repositories-info'.
-3. Create collection named 'repositories-overall'. Under that collection, create '_overall' document.
+4. Create collection named '<ecosystem_name>-repositories-data' in the database. Under that collection, create '_names' document. Under that document, create 'repository_names' list. Add all the repositories you want to track as list item in '{owner: GITHUB_PROJECT_OWNER, repo: GITHUB_PROJECT_NAME}' format.
+5. Create collection named '<ecosystem_name>-repositories-info'.
+6. Create collection named '<ecosystem_name>-repositories-overall'. Under that collection, create '_overall' document.
 
 ```
-- repositories-data
+- <ecosystem_name>-repositories-data
   |- _names
      |- repository_names
         |- {owner: GITHUB_PROJECT_OWNER, repo: GITHUB_PROJECT_NAME}
 
-- repositories-info
+- <ecosystem_name>-repositories-info
 
-- repositories-overall
+- <ecosystem_name>-repositories-overall
   |- _overall
 
 ```
 
-4. Collection names will be used in .env file.
+> Collection names will be used in .env file.
 
-## Algolia Set-up
+## Algolia Configuration
 
 1. Create a new project in Algolia ('Create applications' in <https://www.algolia.com/account/applications>).
 
 ## Firebase-Algoila Integration
 
+This integration is used to sync the data in Firestore to Algolia. This is done by using a Firebase extension. Whenever new data is added to Firestore, it will be automatically synced to Algolia and will be indexed. This also applies for the updates and deletions.
+
 1. Go to project extensions in Firebase (In <https://console.firebase.google.com/project/[FIREBASE_PROJECT_NAME>]/extensions).
 2. Install `Search Firestore with Algolia` extension.
-3. After filling the required fields, configure the extension as,
+3. Review billing and usage plan. This extension reqires pay as you go plan.
+4. Review APIs enabled and resources created. You need to enable Cloud Functions, Artifact Registry, and Secret Manager.
+5. Review access granted to this extension.
+6. Configure the extension as,
 
 ```
-Collection path: repositories-info
+Collection path: <ecosystem_name>-repositories-info
 Indexable Fields (Optional): <leave empty>
 Force Data Sync (Optional): No
-Algolia Index Name: <give a name>
-Algolia Application Id: <Algolia Application Id>
-Algolia Admin API Key: <Algolia Admin API Key>
+Algolia Index Name: <index-name> # for example: firebase-polka-indexed
+Algolia Application Id: <Algolia Application Id> # This is the Algolia application you want to index your data to. You can find your credentials including application ID on your Algolia dashboard, under the API keys tab.
+Algolia Admin API Key: <Algolia Admin API Key> # We recommend creating a new API key with “addObject”, “deleteObject”, “listIndexes”, “deleteIndex”, “editSettings”, and “settings” permissions. Do not use the Admin API key.
+Transform Function Name (Experimental) (Optional) : <leave empty>
+Full Index existing documents?: Yes
+Cloud Functions location: <choose a location>
+
 ```
 
-Detailed documentations can be found here: <https://github.com/algolia/firestore-algolia-search/tree/main>
+6. Click 'Install Extension' button.
+7. After waiting for a while, you will see the extension is installed. Click 'Get Started' button.
 
-## Typeform Set-up
+> If you search for any project after the configuration, and you don't see any results (and no error in console), just know that, you needed to set 'Full Index existing documents?' to 'Yes' in the configuration.
+
+Detailed integration document can be found here: <https://github.com/algolia/firestore-algolia-search/tree/main>
+
+## Typeform Configuration
 
 1. Create a new form in Typeform ('Create a new typeform' in <https://admin.typeform.com/>).
 2. Get the form ID of the form. This will be used in .env file.
+3. `Publish` the form. This will make the form available to the public.
+
+> If you get an error about the form not found, just know that, you forgot to publish the form.
 
 ## Get Firebase Admin SDK
 
@@ -75,33 +94,35 @@ Detailed documentations can be found here: <https://github.com/algolia/firestore
 Create .env file in the root directory and add the following variables:
 
 ```
-REACT_APP_PROJECT_NAME # Name of the project 
-REACT_APP_ECOSYSTEM # Name of the ecosystem 
+REACT_APP_PROJECT_NAME # Name of the project. For example: PolkaFlow
+REACT_APP_ECOSYSTEM # Name of the ecosystem. This will be used in the title of the page etc. For example: Polkadot
 
+# Variables below can be obtained from step 'Algolia Configuration' and 'Firebase-Algoila Integration'
 REACT_APP_ALGOLIA_APPLICATION_ID  # Algolia Application ID
 REACT_APP_ALGOLIA_ADMIN_API_KEY # Algolia Admin API Key
 REACT_APP_ALGOLIA_INDEX_NAME # Algolia Index Name
 
+# Variables below can be obtained from step 'Get Firebase Admin SDK'
 REACT_APP_FIREBASE_CONFIG_API_KEY # Firebase API Key
 REACT_APP_FIREBASE_CONFIG_AUTH_DOMAIN # Firebase Auth Domain
 REACT_APP_FIREBASE_CONFIG_DATABASE_URL # Firebase Database URL
 REACT_APP_FIREBASE_CONFIG_PROJECT_ID # Firebase Project ID
 REACT_APP_FIREBASE_CONFIG_STORAGE_BUCKET # Firebase Storage Bucket
 REACT_APP_FIREBASE_CONFIG_MESSAGING_SENDER_ID # Firebase Messaging Sender ID
-REACT_APP_FIREBASE_CONFIG_APP_ID # Firebase App ID
-REACT_APP_FIREBASE_CONFIG_API_MEASUREMENT_ID # Firebase API Measurement ID
+REACT_APP_FIREBASE_CONFIG_APP_ID # Firebase App ID 
+REACT_APP_FIREBASE_CONFIG_API_MEASUREMENT_ID # Firebase API Measurement ID # Leavy empty if you don't have one
  
-REACT_APP_FIREBASE_INFO_COLLECTION # Firebase Info Collection
-REACT_APP_FIREBASE_DATA_COLLECTION # Firebase Data Collection
-REACT_APP_FIREBASE_OVERALL_COLLECTION # Firebase Overall Collection
+REACT_APP_FIREBASE_INFO_COLLECTION # Firebase Info Collection. For example: polka-repositories-info
+REACT_APP_FIREBASE_DATA_COLLECTION # Firebase Data Collection name. For example: polka-repositories-data
+REACT_APP_FIREBASE_OVERALL_COLLECTION # Firebase Overall Collection name. For example: polka-repositories-overall
 
 REACT_APP_TYPEFORM_ID # Typeform ID
-REACT_APP_LOGO # Logo name in icons folder
+REACT_APP_LOGO # Logo name in icons folder. A icon named `<ecosystem_name>.png` should be in icons directory (src/assets/icons).
 ```
 
 ## Example .env file
 
-The information below is an example of .env file. Ids and keys are not real.
+The information below is an example of .env file. Ids and keys are not real. You need to replace them with your own. It is provided just to give an idea about the variables.
 
 ```
 
@@ -131,8 +152,6 @@ REACT_APP_LOGO="polka"
 
 > For testing, create a .env file in the root directory, and copy the above information. Then run the following command in the terminal.
 > `npm run start`. This will start the app in the development mode. Just know that if you don't set up the backend, you won't be able to see the data.
-
-
 
 # Getting Started with Create React App
 
