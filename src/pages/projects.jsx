@@ -14,8 +14,6 @@ export default function Projects(props) {
     if (Object.keys(props.info).length === 0) {
       return
     }
-    console.log(props.info)
-    // console.log(props.info.map((docPair) => docPair.data))
 
     const repoCards = []
     function compare(a, b) {
@@ -25,8 +23,15 @@ export default function Projects(props) {
         return -1
       }
     }
-    props.info.sort(compare)
-    props.info.forEach((docPair) => {
+
+    const filteredInfo = props.info.filter(
+      (docPair) =>
+        docPair.data !== null &&
+        docPair.data !== undefined &&
+        docPair.data.stargazers_count !== undefined
+    )
+    filteredInfo.sort(compare)
+    filteredInfo.forEach((docPair) => {
       repoCards.push(
         <div className="" key={docPair.id}>
           <ProjectCard
